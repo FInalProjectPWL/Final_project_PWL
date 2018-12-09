@@ -8,8 +8,7 @@ Nama Kelompok<br>
 5. Tiara Widyakunthaningrum (16.11.0385)
 <br>
 <br>
-Nama Startup : Simpanan Pelajar
-<br>
+Nama Startup : Tabungan Anak Pintar(TAP)<br>
 <br>
 Kategori : Finance(Keuangan)
 <br>
