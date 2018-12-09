@@ -13,13 +13,13 @@ Nama Startup : Tabungan Anak Pintar(TAP)<br>
 Kategori : Finance(Keuangan)
 <br>
 <br>
-Deskripsi : Simpanan pelajar adalah aplikasi berbasis web dimana berfungsi sebagai tabungan 
+Deskripsi : Tabungan Anak Pintar adalah aplikasi berbasis web dimana berfungsi sebagai tabungan 
 untuk para siswa yang menanbung setiap harinya di sekolah.
-Simpanan pelajar dibuat agar segala pemasukkan dan pengeluaran  di catat secara 
+Tabungan Anak Pintar dibuat agar segala pemasukkan dan pengeluaran  di catat secara 
 berkala sehingga lebih efisien dan dapat di lihat oleh orang tua. 
-Output yang dapat dilihat oraang tua berupa laporan yang dapat diakses setiap
-waktu agar mengetahui apakah nominal yang ditabung anak sesuai atau tidak dan apa saja
-pengeluarannya.
+Output yang dapat dilihat orang tua berupa laporan yang dapat diakses setiap
+ waktu agar mengetahui apakah nominal yang ditabung anak sesuai atau tidak dan apa saja
+ pengeluarannya.
 <br>
 <br>
 A. Halaman Utama (Navbar)
