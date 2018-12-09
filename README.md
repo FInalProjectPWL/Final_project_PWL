@@ -14,7 +14,7 @@ Kategori : Finance(Keuangan)
 <br>
 <br>
 Deskripsi : Tabungan Anak Pintar adalah aplikasi berbasis web dimana berfungsi sebagai tabungan 
-untuk para siswa yang menanbung setiap harinya di sekolah.
+untuk para siswa yang menabung setiap harinya di sekolah.
 Tabungan Anak Pintar dibuat agar segala pemasukkan dan pengeluaran  di catat secara 
 berkala sehingga lebih efisien dan dapat di lihat oleh orang tua. 
 Output yang dapat dilihat orang tua berupa laporan yang dapat diakses setiap
