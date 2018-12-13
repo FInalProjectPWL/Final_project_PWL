@@ -32,21 +32,21 @@ require_once 'koneksi.php';
   <div class="card">
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
-      <form action="login.php" method="post">
+      <form method="post">
         <div class="form-group has-feedback">
-          <input type="text" class="form-control" placeholder="Nama Lengkap">
+          <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" required="Masukan Nama Lengkap">
           <span class="fa fa-user form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <input type="telepon" class="form-control" placeholder="Telepon" required>
+          <input type="telepon" class="form-control" id="telepon" name="telepon" placeholder="Telepon" placeholder="telepon" required="telepon">
           <span class="fa fa-phone form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" class="form-control" id="email" name="email" placeholder="Email" required="a@gmail.com">
           <span class="fa fa-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Masukan Password" required="Masukan Password">
           <span class="fa fa-lock form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
@@ -62,7 +62,7 @@ require_once 'koneksi.php';
             </div>
           </div>
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+            <button type="submit" class="btn btn-primary btn-block btn-flat" type="submit" name="register" value="register">Register</button>
           </div>
         </div>
       </form>
@@ -80,7 +80,17 @@ require_once 'koneksi.php';
       <a href="login.html" class="text-center">I already have a membership</a>
     </div>
   </div>
+
+<?php 
+      if (isset($_POST['register'])) {
+        $con=mysqli_query($connection, "INSERT INTO user (nama, telepon, email, password) VALUES ('$_POST[nama]', '$_POST[telepon]','$_POST[email]','$_POST[password]')");
+        echo "<script>alert('Daftar sukses!');</script>";
+        echo "<meta http-equiv='refresh' content='1;url=login.php'>";
+      }
+     ?>
+
 </div>
+
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="../../plugins/iCheck/icheck.min.js"></script>

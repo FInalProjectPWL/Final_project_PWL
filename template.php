@@ -38,6 +38,15 @@
 								<span class="hidden-xs">Ridho Aryo Bimo</span>
 							</a>
 							<ul class="dropdown-menu">
+								<!-- Notifications: style can be found in dropdown.less -->
+          <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning">10</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 10 notifications</li>
+              <li>
 								<li class="user-header">
 									<img src="assets/dist/img/photo1.png" class="img-circle" alt="User Image">
 									<p>

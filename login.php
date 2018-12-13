@@ -20,25 +20,25 @@ require_once 'koneksi.php';
 	<div class="login-box">
 		<div class="login-box-body">
 			<div class="login-logo">
-				<a href="login.php"><b>SIM</b>PEL</a>
+				<a><b>SIM</b>PEL</a>
 				<!-- <a href=""><img src="assets/dist/img/logo3.jpg"></a> -->
 			</div>
 			<a href=""><img src="assets/dist/img/logo3.jpg" style="width: 100%; height: 100%"></a>
 			<br>
 			<br>
 			<p class="login-box-msg">Masukkan email dan password anda</p>
-			<form action="dashboard.php" method="post">
+			<form method="post">
 				<div class="form-group has-feedback">
-					<input type="email" class="form-control" placeholder="Email" required>
+					<input type="email" class="form-control" id="email" name="email" placeholder="Masukan Email">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="password" class="form-control" placeholder="Password" required>
+					<input type="password" class="form-control" id="password" name="password" placeholder="Masukan Password">
 					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
-						<button type="submit" class="btn btn-primary btn-block btn-flat" style="width: 100%">Masuk</button>
+						<button type="submit" class="btn btn-primary btn-block btn-flat" name="submit" value="LOGIN" style="width: 100%">Masuk</button>
 					</div>
 				</div>
 			</form>
@@ -53,22 +53,19 @@ require_once 'koneksi.php';
 			<a href="#">Lupa password? </a>
 			<br> 
 			<a href="register.php" class="text-center">Daftar</a>
-		</div>
-
 		<?php
-		include "koneksi.php";
 		if (isset($_POST["login"]))
 			{
 				$email=$_POST["email"];
 				$password=$_POST["password"];
-				$loginuser=mysqli_query($koneksi, "SELECT * FROM user WHERE email='$email' AND password='$password'");
+				$loginuser=mysqli_query($connection, "SELECT * FROM user WHERE email='$email' AND password='$password'");
 				$validakun=$loginuser->num_rows;
 				if ($validakun==1)
 				{
 					$akun=$loginuser->fetch_assoc();
-					$_SESSION["pelanggan"]=$akun;
+					$_SESSION["user"]=$akun;
 					echo "<script>alert('Anda sukses login');</script>";
-					echo "<meta http-equiv='refresh' content='1;url=home-user.php'>";
+					echo "<meta http-equiv='refresh' content='1;url=index.php'>";
 				}
 		else
 			{
@@ -77,7 +74,7 @@ require_once 'koneksi.php';
 			}
 		}
 		?>
-
+		</div>
 	</div>
 	<script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
