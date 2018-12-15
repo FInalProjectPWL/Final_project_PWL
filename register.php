@@ -47,11 +47,11 @@ require_once 'koneksi.php';
         </div>
         <div class="form-group has-feedback">
           <input type="nama_sekolah" class="form-control" id="nama_sekolah" name="nama_sekolah" placeholder="Nama Sekolah" required="Masukan Nama Sekolah">
-          <span class="fa fa-envelope form-control-feedback"></span>
+          <span class="fa fa-institution form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
           <input type="alamat" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required="Masukan Alamat">
-          <span class="fa fa-envelope form-control-feedback"></span>
+          <span class="fa fa-street-view form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
           <input type="kodepos" class="form-control" id="kodepos" name="kodepos" placeholder="Kode Pos" required="Masukan Kode Pos">
