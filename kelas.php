@@ -1,8 +1,10 @@
 <?php 
 include 'template.php'; 
-require_once 'koneksi.php';
-
+include 'koneksi.php';
 session_start();
+
+$query = mysqli_query($connection,"SELECT * FROM tb_datakelas ORDER BY id_datakelas DESC");
+
 ?>
 
 <div class="content-wrapper">
@@ -25,49 +27,49 @@ session_start();
 					<table id="example1" class="table table-striped table-bordered">
 						<thead>
 							<tr>
-								<th>Aksi</th>
 								<th>No</th>
-								<th>ID</th>
 								<th>Kelas</th>
+								<th>Jurusan</th>
+								<th>Jumlah Siswa</th>
+								<th>Aksi</th>
+
 							</tr>
 						</thead>
 						<tbody>
+				
 							<tr>
-								<td>
-									<a href="" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a>
-									<a href="" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
-								</td>
-								<td>1</td>
-								<td>ID-001</td>
-								<td>VII</td>
-							</tr>
-							<tr>
-								<td>
-									<a href="" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a>
-									<a href="" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
-								</td>
-								<td>2</td>
-								<td>ID-002</td>
-								<td>VIII</td>
-							</tr>
-							<tr>
-								<td>
-									<a href="" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a>
-									<a href="" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
-								</td>
-								<td>3</td>
-								<td>ID-003</td>
-								<td>IV</td>
+
 							</tr>
 						</tbody>
+						<?php
+
+						$no=1;
+						$query = mysqli_query($connection," SELECT * FROM tb_datakelas");
+						while($record= mysqli_fetch_array($query)) {
+							?>
+
+							<tr class="active">
+								<td> <?php echo $no; ?></td>
+								<td> <?php echo $record ['kelas']; ?></td>
+								<td> <?php echo $record ['jurusan']; ?></td>
+								<td> <?php echo $record ['jml_siswa'] ?></td>
+								<td><a href="update_kelas.php?id_datakelas=<?php echo $record ['id_datakelas']?>" class = "fa fa-pencil"></a> |
+									<a href="delete_kelas.php?id_datakelas=<?php echo $record ['id_datakelas']?>" class = "fa fa-trash"></a> 
+								</td>
+							</tr>
+						
+
+						<?php $no++; } ?>
 					</table>
+
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
 </div>
-<div class="modal fade" id="tambah">
+<form method="post">
+	<div class="modal fade" id="tambah">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -77,19 +79,39 @@ session_start();
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label>ID Kelas</label>
-					<input type="text" name="id" value="ID-004" class="form-control" placeholder="ID Kelas" readonly>
+					<label> Kelas</label>
+					<input type="text" name="kelas" class="form-control" placeholder="Kelas" required= "">
 				</div>
 				<div class="form-group">
-					<label>Kelas</label>
-					<input type="text" name="nama" class="form-control" placeholder="Kelas">
+					<label>Jurusan</label>
+					<input type="text" name="jurusan" class="form-control" placeholder="Jurusan" required= "">
+				</div>
+					<div class="form-group">
+					<label>Jumlah Siswa</label>
+					<input type="text" name="jml_siswa" class="form-control" placeholder="Jumlah Siswa" required= "">
 				</div>
 			</div>
+
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary pull-left">Simpan</button>
+				 <button type="submit" class="btn btn-primary" name="submit" value="submit">Simpan</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
 			</div>
 		</div>
+
 	</div>
+</form>
+<?php 
+      if (isset($_POST['submit'])) {
+
+        $con=mysqli_query($connection, "INSERT INTO tb_datakelas (kelas, jurusan, jml_siswa) VALUES ('$_POST[kelas]','$_POST[jurusan]','$_POST[jml_siswa]')");
+        echo "<script>alert('Daftar sukses!');</script>";
+        echo "<meta http-equiv='refresh' content='1;url=kelas.php'>";
+      }
+  ?>
+
+
+
+	
 </div>
+
 <?php include 'footer.php'; ?>

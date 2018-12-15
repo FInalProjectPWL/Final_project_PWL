@@ -19,7 +19,7 @@
 					<table id="example1" class="table table-striped table-bordered">
 						<thead>
 							<tr>
-								<th>Aksi</th>
+								
 								<th>No</th>
 								<th>ID</th>
 								<th>No Rekening</th>
@@ -27,49 +27,31 @@
 								<th>Kelas</th>
 								<th>Orang Tua</th>
 								<th>Saldo</th>
+								<th>Aksi</th>
 							</tr>
 						</thead>
-						<tbody>
+						<!--tbody>
 							<tr>
 								<td>
 									<a href="" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a>
 									<a href="" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
 								</td>
-								<td>1</td>
-								<td>ID-0001</td>
-								<td>20180501</td>
-								<td>Ridho</td>
-								<td>VII</td>
-								<td>Martutik</td>
-								<td>Rp. 20.0000.000</td>
+
 							</tr>
 							<tr>
 								<td>
 									<a href="" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a>
 									<a href="" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
 								</td>
-								<td>2</td>
-								<td>ID-0002</td>
-								<td>20180502</td>
-								<td>Aryo</td>
-								<td>VIII</td>
-								<td>Agus</td>
-								<td>Rp. 10.0000.000</td>
+
 							</tr>
 							<tr>
 								<td>
 									<a href="" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a>
 									<a href="" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
 								</td>
-								<td>3</td>
-								<td>ID-0003</td>
-								<td>20180503</td>
-								<td>Bimo</td>
-								<td>IV</td>
-								<td>Budiono</td>
-								<td>Rp. 20.0000.000</td>
 							</tr>
-						</tbody>
+						</tbody-->
 					</table>
 				</div>
 			</div>
@@ -88,19 +70,19 @@
 			<div class="modal-body">
 				<div class="form-group">
 					<label>ID Siswa</label>
-					<input type="text" name="id" value="ID-004" class="form-control" placeholder="ID Siswa" readonly>
+					<input type="text" name="id" class="form-control" placeholder="ID Siswa" required= "">
 				</div>
 				<div class="form-group">
 					<label>No Rekening</label>
-					<input type="text" name="No Rekening" value="20180501" class="form-control" placeholder="No Rekening" readonly>
+					<input type="text" name="No Rekening" class="form-control" placeholder="No Rekening" required= "">
 				</div>
 				<div class="form-group">
 					<label>Nama</label>
-					<input type="text" name="nama" class="form-control" placeholder="Nama">
+					<input type="text" name="nama" class="form-control" placeholder="Nama" required= "">
 				</div>
 				<div class="form-group">
 					<label>Alamat</label>
-					<textarea name="alamat" class="form-control" placeholder="Alamat"></textarea>
+					<textarea name="alamat" class="form-control" placeholder="Alamat" required= ""></textarea>
 				</div>
 				<div class="form-group">
 					<label>Kelas</label>
@@ -113,15 +95,15 @@
 				</div>
 				<div class="form-group">
 					<label>Tempat Lahir</label>
-					<input type="text" name="telephone" class="form-control" placeholder="Yogyakarta">
+					<input type="text" name="telephone" class="form-control" placeholder="Tempat Lahir" required= "">
 				</div>
 				<div class="form-group">
 					<label>Tanggal Lahir</label>
-					<input id="datepicker1" type="text" name="Tanggal Lahir" class="form-control" placeholder="16-09-1998">
+					<input id="datepicker1" type="text" name="Tanggal Lahir" class="form-control" placeholder="Tanggal Lahir" required= "">
 				</div>
 				<div class="form-group">
 					<label>Nama Orang Tua</label>
-					<input type="text" name="Password" class="form-control" placeholder="Martutik">
+					<input type="text" name="Password" class="form-control" placeholder="Nama Orang Tua" required= "">
 				</div>
 			</div>
 			<div class="modal-footer">
