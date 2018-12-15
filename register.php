@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once 'koneksi.php';
+require_once ("koneksi.php");
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@ require_once 'koneksi.php';
       <p class="login-box-msg">Register a new membership</p>
       <form method="post">
         <div class="form-group has-feedback">
-          <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" required="Masukan Nama Lengkap">
+          <input type="text" class="form-control" id="nama_admin" name="nama_admin" placeholder="Nama Lengkap" required="Masukan Nama Lengkap">
           <span class="fa fa-user form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
@@ -46,39 +46,23 @@ require_once 'koneksi.php';
           <span class="fa fa-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <input type="nama_sekolah" class="form-control" id="nama_sekolah" name="nama_sekolah" placeholder="Nama Sekolah" required="Masukan Nama Sekolah">
-          <span class="fa fa-institution form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-          <input type="alamat" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required="Masukan Alamat">
-          <span class="fa fa-street-view form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-          <input type="kodepos" class="form-control" id="kodepos" name="kodepos" placeholder="Kode Pos" required="Masukan Kode Pos">
-          <span class="fa fa-envelope form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-          <input type="nama_kepsek" class="form-control" id="nama_kepsek" name="nama_kepsek" placeholder="Nama Kepala Sekolah" required="Masukan Nama kepala Sekolah">
-          <span class="fa fa-envelope form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-          <input type="situs" class="form-control" id="situs" name="situs" placeholder="situs" required="www.sma.ac.id/">
-          <span class="fa fa-envelope form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
           <input type="password" class="form-control" id="password" name="password" placeholder="Masukan Password" required="Masukan Password">
           <span class="fa fa-lock form-control-feedback"></span>
         </div>
+        <!--div class="form-group has-feedback">
+          <input type="password" class="form-control" placeholder="Retype password">
+          <span class="fa fa-lock form-control-feedback"></span>
+        </div-->
         <div class="row">
-          <div class="col-12">
+          <div class="col-8">
             <div class="checkbox icheck">
               <label>
                 <input type="checkbox"> I agree to the <a href="#">terms</a>
               </label>
             </div>
           </div>
-          <div class="col-8">
-            <button type="submit" class="btn btn-primary btn-block btn-flat" type="submit" name="register" value="register">Register</button>
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block btn-flat" type="submit" name="submit" value="submit">Register</button>
           </div>
         </div>
       </form>
@@ -98,12 +82,14 @@ require_once 'koneksi.php';
   </div>
 
 <?php 
-      if (isset($_POST['register'])) {
-        $con=mysqli_query($connection, "INSERT INTO user (nama, telepon, email, password) VALUES ('$_POST[nama]', '$_POST[telepon]','$_POST[email]','$_POST[password]')");
+      if (isset($_POST['submit'])) {
+
+        $con=mysqli_query($connection, "INSERT INTO usersekolah (nama_admin, telepon, email, password) VALUES ('$_POST[nama_admin]','$_POST[telepon]','$_POST[email]','$_POST[password]')");
         echo "<script>alert('Daftar sukses!');</script>";
         echo "<meta http-equiv='refresh' content='1;url=login.php'>";
       }
-     ?>
+  ?>
+     
 
 </div>
 

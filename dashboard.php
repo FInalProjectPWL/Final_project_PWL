@@ -1,4 +1,9 @@
-<?php include 'template.php'; ?>
+<?php 
+include 'template.php'; 
+require_once 'koneksi.php';
+
+session_start();
+?>
 <div class="content-wrapper">
 <section class="content-header">
 	<h1>

@@ -38,7 +38,7 @@ require_once 'koneksi.php';
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
-						<button type="submit" class="btn btn-primary btn-block btn-flat" name="submit" value="LOGIN" style="width: 100%">Masuk</button>
+						<button type="submit" class="btn btn-primary btn-block btn-flat" name="submit" value="submit" style="width: 100%">Masuk</button>
 					</div>
 				</div>
 			</form>
@@ -54,25 +54,25 @@ require_once 'koneksi.php';
 			<br> 
 			<a href="register.php" class="text-center">Daftar</a>
 		<?php
-		if (isset($_POST["login"]))
+		if (isset($_POST["submit"]))
 			{
 				$email=$_POST["email"];
 				$password=$_POST["password"];
-				$loginuser=mysqli_query($connection, "SELECT * FROM user WHERE email='$email' AND password='$password'");
+				$loginuser=mysqli_query($connection, "SELECT * FROM usersekolah WHERE email='$email' AND password='$password'");
 				$validakun=$loginuser->num_rows;
 				if ($validakun==1)
 				{
 					$akun=$loginuser->fetch_assoc();
 					$_SESSION["user"]=$akun;
 					echo "<script>alert('Anda sukses login');</script>";
-					echo "<meta http-equiv='refresh' content='1;url=index.php'>";
+					echo "<meta http-equiv='refresh' content='1;url=dashboard.php'>";
 				}
-		else
-			{
+				else
+				{
 				echo "<script>alert('Anda gagal login, periksa akun anda!');</script>";
-				echo "<script>location='login.php';</script>";
+				echo "<script>location='dashboard.php';</script>";
+				}
 			}
-		}
 		?>
 		</div>
 	</div>
