@@ -46,22 +46,38 @@ require_once 'koneksi.php';
           <span class="fa fa-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
+          <input type="nama_sekolah" class="form-control" id="nama_sekolah" name="nama_sekolah" placeholder="Nama Sekolah" required="Masukan Nama Sekolah">
+          <span class="fa fa-envelope form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="alamat" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required="Masukan Alamat">
+          <span class="fa fa-envelope form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="kodepos" class="form-control" id="kodepos" name="kodepos" placeholder="Kode Pos" required="Masukan Kode Pos">
+          <span class="fa fa-envelope form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="nama_kepsek" class="form-control" id="nama_kepsek" name="nama_kepsek" placeholder="Nama Kepala Sekolah" required="Masukan Nama kepala Sekolah">
+          <span class="fa fa-envelope form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="situs" class="form-control" id="situs" name="situs" placeholder="situs" required="www.sma.ac.id/">
+          <span class="fa fa-envelope form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
           <input type="password" class="form-control" id="password" name="password" placeholder="Masukan Password" required="Masukan Password">
           <span class="fa fa-lock form-control-feedback"></span>
         </div>
-        <div class="form-group has-feedback">
-          <input type="password" class="form-control" placeholder="Retype password">
-          <span class="fa fa-lock form-control-feedback"></span>
-        </div>
         <div class="row">
-          <div class="col-8">
+          <div class="col-12">
             <div class="checkbox icheck">
               <label>
                 <input type="checkbox"> I agree to the <a href="#">terms</a>
               </label>
             </div>
           </div>
-          <div class="col-4">
+          <div class="col-8">
             <button type="submit" class="btn btn-primary btn-block btn-flat" type="submit" name="register" value="register">Register</button>
           </div>
         </div>
