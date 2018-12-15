@@ -1,9 +1,4 @@
-<?php 
-include 'template.php'; 
-require_once 'koneksi.php';
 
-session_start();
-?>
 <div class="content-wrapper">
 <section class="content-header">
 	<h1>
@@ -79,4 +74,3 @@ session_start();
 	</div>
 </section>
 </div>
-<?php include 'footer.php'; ?>
