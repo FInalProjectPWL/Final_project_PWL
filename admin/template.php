@@ -1,9 +1,3 @@
-<?php 
-require_once '../koneksi.php';
-session_start();
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,21 +5,19 @@ session_start();
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>SIMPEL</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="../assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../assets/bower_components/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../assets/bower_components/Ionicons/css/ionicons.min.css">
-	<link rel="stylesheet" href="../assets/dist/css/Simpel.min.css">
-	<link rel="stylesheet" href="../assets/dist/css/skins/_all-skins.min.css">
-	<link rel="stylesheet" href="../assets/bower_components/morris.js/morris.css">
-	<link rel="stylesheet" href="../assets/bower_components/jvectormap/jquery-jvectormap.css">
-	<link rel="stylesheet" href="../assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-	<link rel="stylesheet" href="../assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
-	<link rel="stylesheet" href="../assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+	<link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/bower_components/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/bower_components/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="assets/dist/css/Simpel.min.css">
+	<link rel="stylesheet" href="assets/dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="assets/bower_components/morris.js/morris.css">
+	<link rel="stylesheet" href="assets/bower_components/jvectormap/jquery-jvectormap.css">
+	<link rel="stylesheet" href="assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+	<link rel="stylesheet" href="assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" href="assests/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-	<link rel="stylesheet" href="../assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-	<link rel="stylesheet" href="../assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
-	<script src="../assets/dist/js/js-3.1.1.min.js"></script>
-    <script src="../assets/dist/js/bootstrap.min.3.7.7.js"></script>
+	<link rel="stylesheet" href="assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+	<link rel="stylesheet" href="assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -42,13 +34,13 @@ session_start();
 					<ul class="nav navbar-nav">
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<img src="../assets/dist/img/photo1.png" class="user-image" alt="User Image">
+								<img src="assets/dist/img/photo1.png" class="user-image" alt="User Image">
 								<span class="hidden-xs">Ridho Aryo Bimo</span>
 							</a>
 							<ul class="dropdown-menu">
 			
 								<li class="user-header">
-									<img src="../assets/dist/img/photo1.png" class="img-circle" alt="User Image">
+									<img src="assets/dist/img/photo1.png" class="img-circle" alt="User Image">
 									<p>
 										Ridho Aryo Bimo
 										<small>Login Terakhir : 27/05/2018 - 13:17:00</small>
@@ -72,7 +64,7 @@ session_start();
 			<section class="sidebar">
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img src="../assets/dist/img/photo1.png" class="img-circle" alt="User Image">
+						<img src="assets/dist/img/photo1.png" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
 						<p>Ridho Aryo Bimo</p>
@@ -133,9 +125,3 @@ session_start();
 				</ul>
 			</section>
 		</aside>
-		
-<?php include 'footer.php'; ?>
-</div>
-
-</body>
-</html>
