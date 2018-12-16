@@ -1,6 +1,6 @@
-<?php include 'template.php'; ?>
+<?php include '../template.php'; ?>
 <?php  
-	include "koneksi.php";
+	include "../koneksi.php";
 	// query select
 	$query = mysqli_query($connection,"SELECT * FROM user ORDER BY nama ASC");
 ?>

@@ -1,7 +1,7 @@
 <?php 
-include 'template.php'; 
-include 'koneksi.php';
-session_start();
+include '../template.php'; 
+include '../koneksi.php';
+// session_start();
 
 $query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_dataorgtua ASC");
 

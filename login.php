@@ -65,12 +65,12 @@ require_once 'koneksi.php';
 					$akun=$loginuser->fetch_assoc();
 					$_SESSION["user"]=$akun;
 					echo "<script>alert('Anda sukses login');</script>";
-					echo "<meta http-equiv='refresh' content='1;url=dashboard.php'>";
+					echo "<meta http-equiv='refresh' content='1;url=admin/dashboard.php'>";
 				}
 				else
 				{
 				echo "<script>alert('Anda gagal login, periksa akun anda!');</script>";
-				echo "<script>location='dashboard.php';</script>";
+				echo "<script>location='admin/dashboard.php';</script>";
 				}
 			}
 		?>

@@ -1,8 +1,8 @@
 <?php 
-include 'template.php'; 
-require_once 'koneksi.php';
+include '../template.php'; 
+require_once '../koneksi.php';
 
-session_start();
+// session_start();
 ?>
 <div class="content-wrapper">
 <section class="content-header">

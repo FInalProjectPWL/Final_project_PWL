@@ -1,12 +1,13 @@
-<?php include 'template.php'; ?>
+<?php include '../template.php'; ?>
 <div class="content-wrapper">
 <section class="content-header">
 	<h1>
-		Laporan Transaksi
+		Data Setoran
+		<a href="#" data-toggle="modal" data-target="#tambah" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-		<li class="active">Laporan Transaksi</li>
+		<li class="active">Data Setoran</li>
 	</ol>
 </section>
 <section class="content">
@@ -15,28 +16,6 @@
 			<div class="box">
 				<div class="box-header"></div>
 				<div class="box-body">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="form-group">
-								<input type="text" id="datepicker1" value="<?php echo date('d/m/Y'); ?>" name="dari" class="form-control" placeholder="Periode">
-							</div>
-						</div>
-						<div class="col-md-2 text-center">
-							<div class="form-group">
-								<label>Sampai</label>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<input type="text" id="datepicker2" value="<?php echo date('d/m/Y'); ?>" name="dari" class="form-control" placeholder="Periode">
-							</div>
-						</div>
-						<div class="col-md-2">
-							<button type="submit" class="btn btn-primary" style="width: 100%">Submit</button>
-						</div>
-					</div>
-					<a href="" class="btn btn-info"><i class="fa fa-print"></i> Cetak Laporan</a>
-					<hr>
 					<table id="example1" class="table table-striped table-bordered">
 						<thead>
 							<tr>
@@ -93,5 +72,28 @@
 		</div>
 	</div>
 </section>
+</div>
+<div class="modal fade" id="tambah">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Masukan No Rekening</h4>
+			</div>
+			<form method="post" action="detail_setoran.php">
+			<div class="modal-body">
+				<div class="form-group">
+					<label>No Rekening</label>
+					<input type="text" name="id" class="form-control" placeholder="20170501">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary pull-left">Cari</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+			</div>
+			</form>
+		</div>
+	</div>
 </div>
 <?php include 'footer.php'; ?>

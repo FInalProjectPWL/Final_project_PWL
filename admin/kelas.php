@@ -1,6 +1,6 @@
 <?php 
-include 'template.php'; 
-include 'koneksi.php';
+include '../template.php'; 
+include '../koneksi.php';
 session_start();
 
 $query = mysqli_query($connection,"SELECT * FROM tb_datakelas ORDER BY id_datakelas DESC");
