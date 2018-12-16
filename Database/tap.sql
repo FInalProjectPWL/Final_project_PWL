@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Des 2018 pada 10.57
+-- Waktu pembuatan: 16 Des 2018 pada 05.34
 -- Versi server: 10.1.35-MariaDB
 -- Versi PHP: 7.2.9
 
@@ -40,9 +40,10 @@ CREATE TABLE `tb_datakelas` (
 --
 
 INSERT INTO `tb_datakelas` (`id_datakelas`, `kelas`, `jurusan`, `jml_siswa`) VALUES
-(1, 'X-1', 'NA', '11'),
+(1, 'X-2', 'NA', '11'),
 (3, '123', '123', '444'),
-(10, 'X-2', 'IPA', '32');
+(10, 'X-1', 'NA', '11'),
+(11, 'X-2', 'NA', '100');
 
 -- --------------------------------------------------------
 
@@ -65,7 +66,8 @@ CREATE TABLE `tb_dataorgtua` (
 --
 
 INSERT INTO `tb_dataorgtua` (`id_dataorgtua`, `nama_siswa`, `nama_orgtua`, `alamat`, `telepon`, `username`, `password`) VALUES
-(17, 'murni12355345345', 'budi2312323', 'asd12312313', '123', 'asd', '123');
+(1, 'tiara', 'budi', 'GG', '082226801285', 'tiara123', '12345'),
+(18, 'murni111', 'budi2', 'jakal', '3123123123', 'tiara2', '12345');
 
 -- --------------------------------------------------------
 
@@ -102,21 +104,6 @@ CREATE TABLE `tb_datasetoran` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_datasiswa`
---
-
-CREATE TABLE `tb_datasiswa` (
-  `id_datasiswa` int(11) NOT NULL,
-  `no_rek` varchar(20) NOT NULL,
-  `nama_siswa` varchar(50) NOT NULL,
-  `kelas` varchar(15) NOT NULL,
-  `nama_ortua` varchar(50) NOT NULL,
-  `saldo` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `tb_laporantrans`
 --
 
@@ -133,23 +120,39 @@ CREATE TABLE `tb_laporantrans` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tb_siswa`
+--
+
+CREATE TABLE `tb_siswa` (
+  `id_siswa` int(5) NOT NULL,
+  `no_rek` int(12) NOT NULL,
+  `nama_siswa` varchar(50) NOT NULL,
+  `id_datakelas` int(15) NOT NULL,
+  `id_dataorgtua` int(15) NOT NULL,
+  `saldo` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `userorgtua`
 --
 
 CREATE TABLE `userorgtua` (
   `id_userorgtua` int(20) NOT NULL,
-  `nama_siswa` varchar(50) NOT NULL,
-  `nama_orgtua` varchar(50) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
   `no_rekening` varchar(50) NOT NULL,
   `no_induk` varchar(50) NOT NULL,
   `nisn` varchar(50) NOT NULL,
   `ttl` varchar(50) NOT NULL,
-  `alamat` varchar(100) NOT NULL,
-  `telepon` varchar(20) NOT NULL
+  `id_dataorgtua` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `userorgtua`
+--
+
+INSERT INTO `userorgtua` (`id_userorgtua`, `no_rekening`, `no_induk`, `nisn`, `ttl`, `id_dataorgtua`) VALUES
+(1, '1990754', '9999', '9999', 'tangerang,1mei 1998', 1);
 
 -- --------------------------------------------------------
 
@@ -212,25 +215,25 @@ ALTER TABLE `tb_datasetoran`
   ADD UNIQUE KEY `kredit` (`kredit`);
 
 --
--- Indeks untuk tabel `tb_datasiswa`
---
-ALTER TABLE `tb_datasiswa`
-  ADD PRIMARY KEY (`id_datasiswa`),
-  ADD UNIQUE KEY `saldo` (`saldo`),
-  ADD UNIQUE KEY `nama_ortua` (`nama_ortua`);
-
---
 -- Indeks untuk tabel `tb_laporantrans`
 --
 ALTER TABLE `tb_laporantrans`
   ADD PRIMARY KEY (`id_laporantrans`);
 
 --
+-- Indeks untuk tabel `tb_siswa`
+--
+ALTER TABLE `tb_siswa`
+  ADD PRIMARY KEY (`id_siswa`),
+  ADD UNIQUE KEY `id_dataorgtua` (`id_dataorgtua`),
+  ADD UNIQUE KEY `id_datakelas` (`id_datakelas`);
+
+--
 -- Indeks untuk tabel `userorgtua`
 --
 ALTER TABLE `userorgtua`
   ADD PRIMARY KEY (`id_userorgtua`),
-  ADD UNIQUE KEY `nama_siswa` (`nama_siswa`,`nama_orgtua`,`username`,`email`,`password`,`alamat`,`telepon`);
+  ADD UNIQUE KEY `id_dataorgtua` (`id_dataorgtua`);
 
 --
 -- Indeks untuk tabel `usersekolah`
@@ -246,13 +249,13 @@ ALTER TABLE `usersekolah`
 -- AUTO_INCREMENT untuk tabel `tb_datakelas`
 --
 ALTER TABLE `tb_datakelas`
-  MODIFY `id_datakelas` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_datakelas` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_dataorgtua`
 --
 ALTER TABLE `tb_dataorgtua`
-  MODIFY `id_dataorgtua` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_dataorgtua` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_datapenarikan`
@@ -267,16 +270,16 @@ ALTER TABLE `tb_datasetoran`
   MODIFY `id_datasetoran` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_datasiswa`
---
-ALTER TABLE `tb_datasiswa`
-  MODIFY `id_datasiswa` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT untuk tabel `tb_laporantrans`
 --
 ALTER TABLE `tb_laporantrans`
   MODIFY `id_laporantrans` int(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_siswa`
+--
+ALTER TABLE `tb_siswa`
+  MODIFY `id_siswa` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `userorgtua`
@@ -295,10 +298,17 @@ ALTER TABLE `usersekolah`
 --
 
 --
+-- Ketidakleluasaan untuk tabel `tb_siswa`
+--
+ALTER TABLE `tb_siswa`
+  ADD CONSTRAINT `tb_siswa_ibfk_1` FOREIGN KEY (`id_datakelas`) REFERENCES `tb_datakelas` (`id_datakelas`),
+  ADD CONSTRAINT `tb_siswa_ibfk_2` FOREIGN KEY (`id_dataorgtua`) REFERENCES `tb_dataorgtua` (`id_dataorgtua`);
+
+--
 -- Ketidakleluasaan untuk tabel `userorgtua`
 --
 ALTER TABLE `userorgtua`
-  ADD CONSTRAINT `userorgtua_ibfk_1` FOREIGN KEY (`id_userorgtua`) REFERENCES `tb_dataorgtua` (`id_dataorgtua`);
+  ADD CONSTRAINT `userorgtua_ibfk_1` FOREIGN KEY (`id_dataorgtua`) REFERENCES `tb_dataorgtua` (`id_dataorgtua`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
