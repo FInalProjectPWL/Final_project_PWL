@@ -1,4 +1,4 @@
-
+<?php include 'template.php'; ?>
 <div class="content-wrapper">
 <section class="content-header">
 	<h1>
