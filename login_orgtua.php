@@ -26,10 +26,10 @@ require_once 'koneksi.php';
 			<a href=""><img src="assets/dist/img/logo3.jpg" style="width: 100%; height: 100%"></a>
 			<br>
 			<br>
-			<p class="login-box-msg">Masukkan email dan password anda</p>
+			<p class="login-box-msg">Masukkan username dan password anda</p>
 			<form method="post">
 				<div class="form-group has-feedback">
-					<input type="email" class="form-control" id="email" name="email" placeholder="Masukan Email">
+					<input type="text" class="form-control" id="username" name="username" placeholder="Masukan Email">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
@@ -49,7 +49,7 @@ require_once 'koneksi.php';
 				<a href="https://accounts.google.com/ServiceLogin/signinchooser?elo=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Masuk dengan
 				Google+</a>
 			</div>
-			<a href="login_orgtua.php">Login Orangtua</a>
+			<a href="login.php">Login Sekolah</a>
 			<br>
 			<a href="#">Lupa password? </a>
 			<br> 
@@ -57,21 +57,20 @@ require_once 'koneksi.php';
 		<?php
 		if (isset($_POST["submit"]))
 			{
-				$email=$_POST["email"];
+				$username=$_POST["username"];
 				$password=$_POST["password"];
-				$loginuser=mysqli_query($connection, "SELECT * FROM usersekolah WHERE email='$email' AND password='$password'");
+				$loginuser=mysqli_query($connection, "SELECT * FROM tb_dataorgtua WHERE username='$username' AND password='$password'");
 				$validakun=$loginuser->num_rows;
 				if ($validakun==1)
 				{
 					$akun=$loginuser->fetch_assoc();
 					$_SESSION["user"]=$akun;
 					echo "<script>alert('Anda sukses login');</script>";
-					echo "<meta http-equiv='refresh' content='1;url=dashboard.php'>";
+					echo "<meta http-equiv='refresh' content='1;url=dashboard_orgtua.php'>";
 				}
 				else
 				{
 				echo "<script>alert('Anda gagal login, periksa akun anda!');</script>";
-				echo "<script>location='dashboard.php';</script>";
 				}
 			}
 		?>

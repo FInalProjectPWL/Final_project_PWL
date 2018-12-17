@@ -44,7 +44,7 @@
 									<a class="btn dropdown-toggle btn-primary" data-toggle="dropdown">
 										Login
 										<ul class="dropdown-menu btn">
-											<li><a href="login/login_ortu.php">Login Orangtua</a></li>
+											<li><a href="login_orgtua.php">Login Orangtua</a></li>
                                          	<li><a href="login.php">Login Sekolah</a></li> 
 										</ul>
 									</a>

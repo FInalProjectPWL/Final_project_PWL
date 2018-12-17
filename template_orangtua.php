@@ -6,12 +6,11 @@ $query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_datao
 
 ?>
 <!DOCTYPE html>
-
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TAP (Tabungan Anak Pintar)</title>
+	<title>SIMPEL</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/bower_components/font-awesome/css/font-awesome.min.css">
@@ -38,8 +37,9 @@ $query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_datao
 				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
 					<span class="sr-only">Toggle navigation</span>
 				</a>
+
 				<?php
-				  $query = mysqli_query($connection, "SELECT * FROM usersekolah where id_sekolah = 6");
+						  $query = mysqli_query($connection, "SELECT * FROM tb_dataorgtua where id_dataorgtua = 1");
     while ($record = mysqli_fetch_array($query)) {
 ?>
 				<div class="navbar-custom-menu">
@@ -47,20 +47,20 @@ $query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_datao
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<img src="assets/dist/img/photo1.png" class="user-image" alt="User Image">
-								<span class="hidden-xs"> <?php echo $record['nama_sekolah']; ?></span>
+								<span class="hidden-xs"><?php echo $record['nama_siswa']; ?></span>
 							</a>
 							<ul class="dropdown-menu">
 			
 								<li class="user-header">
 									<img src="assets/dist/img/photo1.png" class="img-circle" alt="User Image">
 									<p>
-										<?php echo $record['nama_sekolah']; ?>
+										<?php echo $record['nama_siswa']; ?>
 										<small>Login Terakhir : 27/05/2018 - 13:17:00</small>
 									</p>
 								</li>
 								<li class="user-footer">
 									<div class="pull-left">
-										<a href="profilesekolah.php" class="btn btn-primary btn-flat">Profile</a>
+										<a href="profile.php" class="btn btn-primary btn-flat">Profile</a>
 									</div>
 									<div class="pull-right">
 										<a href="index.php" class="btn btn-danger btn-flat">Keluar</a>
@@ -79,11 +79,11 @@ $query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_datao
 						<img src="assets/dist/img/photo1.png" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p><?php echo $record['nama_sekolah']; ?></p>
-						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+						<p><?php echo $record['nama_siswa']; ?></p>
+						<a href=""><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
 				</div>
-				<form action="#" method="get" class="sidebar-form">
+				<form action="" method="get" class="sidebar-form">
 					<div class="input-group">
 						<input type="text" name="q" class="form-control" placeholder="Search...">
 						<span class="input-group-btn">
@@ -93,48 +93,23 @@ $query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_datao
 					</div>
 				</form>
 				<ul class="sidebar-menu" data-widget="tree">
-					<li class="header">MENU</li>
-					<li class="active">
-						<a href="dashboard.php"><i class="fa fa-home"></i> <span>Dashbooard</span></a>
-					</li>
-					<li class="treeview">
-						<a href="#">
-							<i class="fa fa-pie-chart"></i>
-							<span>Data Master</span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<li><a href="dataorgtua.php"><i class="fa fa-circle-o"></i> Data Orangtua</a></li>
-							<li><a href="pegawai.php"><i class="fa fa-circle-o"></i> Data Pegawai</a></li>
-							<li><a href="kelas.php"><i class="fa fa-circle-o"></i> Data Kelas</a></li>
-							<li><a href="siswa.php"><i class="fa fa-circle-o"></i> Data Siswa</a></li>
-						</ul>
-					</li>
-					<li class="treeview">
-						<a href="#">
-							<i class="fa fa-credit-card"></i>
-							<span>Transaksi</span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<li><a href="setoran.php"><i class="fa fa-circle-o"></i> Setoran Tunai</a></li>
-							<li><a href="penarikan.php"><i class="fa fa-circle-o"></i> Penarikan Tunai</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="laporan.php"><i class="fa fa-print"></i> <span>Laporan</span></a>
-					</li>
-					<li>
-						<a href="pengaturan.php"><i class="fa fa-cog"></i> <span>Pengaturan</span></a>
-					</li>
-					<li>
-						<a href="login.php"><i class="fa fa-sign-out"></i> <span>Keluar</span></a>
-					</li>
-				</ul>
+      <li class="header">MENU</li>
+      <li class="active">
+        <a href="dashboard_orgtua.php"><i class="fa fa-home"></i> <span>Dashboard</span></a>
+      </li>
+       <li>
+        <a href="rksorangtua.html"><i class="fa fa-line-chart"></i> <span>Rencana Kegiatan Sekolah</span></a>
+      </li>
+      <li>
+        <a href="laporan.html"><i class="fa fa-print"></i> <span>Laporan</span></a>
+      </li>
+      <li>
+        <a href="pengaturan_orgtua.php"><i class="fa fa-cog"></i> <span>Pengaturan</span></a>
+      </li>
+      <li>
+        <a href="../login/login_ortu.html"><i class="fa fa-sign-out"></i> <span>Keluar</span></a>
+      </li>
+    </ul>
 			</section>
 
 		<?php } ?>
