@@ -1,4 +1,4 @@
-<?php include 'template_orgtua.php' ;
+
 
 $query = mysqli_query($connection,"SELECT * FROM user_sekolah");
 
@@ -170,5 +170,3 @@ $query = mysqli_query($connection,"SELECT * FROM user_sekolah");
 <?php } ?>
 </div>
 
-<?php include 'admin/footer.php' ?>
-<!-- ISI DASHBOARD -->

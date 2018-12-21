@@ -3,7 +3,7 @@
   <head>
   
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Home - SIMPEL</title>
+    <title>Home - Tabungan Anak Pintar</title>
 
     <!-- Bootstrap -->
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -85,8 +85,8 @@
 			
 			<div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms" >
 				<br><br><br>
-				<p>SIMPEL menyediakan layanan software tabungan online pelajar yang aman & handal untuk membantu sekolah di Indonesia. Kami memberi kemudahan para karyawan/guru agar terhindar dari kerumitan administrasi, operasional agar mengurangi kesalahan dalam tabungan pelajar. Ini akan dicapai dengan membuat teknologi efektif yang sangat mudah untuk di pakai. 
-				<p>SIMPEL tersedia sebagai layanan yang dapat di akses dari manapun dengan koneksi via internet atau WiFi. Dengan SIMPEL, tidak perlu lagi download atau install apapun di komputer sekolah. Karyawan/Guru sekolah hanya perlu daftar, login, dan mulai mengerjakan tabungan pelajar. Tabungan yang memakai SIMPEL berjalan lebih baik karena jauh lebih menghemat waktu dalam proses administrasi & operasional dan Orang Tua Pelajar dapat mengakses laporan dimanapun kapanpun. 
+				<p>Tabungan Anak Pintar menyediakan layanan software tabungan online pelajar yang aman & handal untuk membantu sekolah di Indonesia. Kami memberi kemudahan para karyawan/guru agar terhindar dari kerumitan administrasi, operasional agar mengurangi kesalahan dalam tabungan pelajar. Ini akan dicapai dengan membuat teknologi efektif yang sangat mudah untuk di pakai. 
+				<p>SIMPEL tersedia sebagai layanan yang dapat di akses dari manapun dengan koneksi via internet atau WiFi. Dengan SIMPEL, tidak perlu lagi download atau install apapun di komputer sekolah. Karyawan/Guru sekolah hanya perlu daftar, login, dan mulai mengerjakan tabungan pelajar. Tabungan yang memakai TAP berjalan lebih baik karena jauh lebih menghemat waktu dalam proses administrasi & operasional dan Orang Tua Pelajar dapat mengakses laporan dimanapun kapanpun. 
 				</p>
 				
 			</div>
@@ -143,7 +143,7 @@
 				
 				<div class="col-md-4 col-md-offset-4">
 					<div class="copyright">
-						&copy; 2018 SIMPEL. All Rights Reserved.
+						&copy; 2018 TAP. All Rights Reserved.
 					</div>
 				</div>						
 			</div>

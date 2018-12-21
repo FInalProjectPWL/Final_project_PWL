@@ -109,7 +109,7 @@
 
         $con=mysqli_query($connection, "INSERT INTO tb_datapegawai (nama_pegawai, tgl_lahir, alamat, no_hp) VALUES ('$_POST[nama_pegawai]','$_POST[tgl_lahir]','$_POST[alamat]','$_POST[no_hp]')");
         echo "<script>alert('Daftar sukses!');</script>";
-        echo "<meta http-equiv='refresh' content='1;url=pegawai.php'>";
+        echo "<meta http-equiv='refresh' content='1;url=index.php?hal=pegawai'>";
       }
   ?>
 

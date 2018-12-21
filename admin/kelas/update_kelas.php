@@ -1,6 +1,4 @@
 <?php 
-include 'template.php'; 
-include 'koneksi.php';
 session_start();
 
 $query = mysqli_query($connection,"SELECT * FROM tb_datakelas where id_datakelas='".$_GET['id_datakelas']."' ");
@@ -73,4 +71,3 @@ window.location='kelas.php';</script>
 
 </div>
 
-<?php include 'footer.php'; ?>

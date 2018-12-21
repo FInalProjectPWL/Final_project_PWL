@@ -1,6 +1,5 @@
 <?php
- include 'template.php'; 
-include 'koneksi.php';
+
 session_start();
 
 
@@ -131,8 +130,7 @@ $query = mysqli_query($connection,"SELECT * FROM tb_laporantrans ORDER BY id_lap
 
         $con=mysqli_query($connection, "INSERT INTO tb_datasiswa.tb_datasiswa (no_rek, id_siswa, id_datakelas, id_orgtua, saldo) select id_dataorgtua from tb_dataorgtua.id_dataorgtua VALUES ('$_POST[no_rek]','$_POST[id_siswa]','$_POST[id_datakelas]','$_POST[id_orgtua]','$_POST[saldo]')");
         echo "<script>alert('Daftar sukses!');</script>";
-        echo "<meta http-equiv='refresh' content='1;url=siswa.php'>";
+        echo "<meta http-equiv='refresh' content='1;url=index.php?hal=siswa'>";
       }
   ?>
 </div>
-<?php include 'footer.php'; ?>

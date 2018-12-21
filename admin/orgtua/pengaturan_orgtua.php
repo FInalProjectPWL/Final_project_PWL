@@ -1,6 +1,5 @@
 <?php 
-include 'template_orgtua.php';
-include 'koneksi.php';
+
 
  ?>
 <div class="content-wrapper">
@@ -90,8 +89,7 @@ $hasil=mysqli_query($connection, $query) or die
 
  <script>
 alert("data sukses Diupdate");
-window.location='pengaturan_orgtua.php';</script>
+window.location='index.php?hal=pengaturan_orgtua';</script>
 <?php
 }
 ?>
-<?php include 'footer.php' ?>

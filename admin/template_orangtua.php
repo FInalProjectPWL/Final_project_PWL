@@ -1,5 +1,4 @@
 <?php 
-include 'koneksi.php';
 
 
 $query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_dataorgtua ASC");

@@ -8,4 +8,4 @@
  }
  ?>
   <script>alert("data telah dihapus");
-window.location='dataorgtua.php';</script>
+window.location='index.php?hal=dataorgtua';</script>

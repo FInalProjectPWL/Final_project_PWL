@@ -8,4 +8,4 @@ require_once ("koneksi.php");
  }
  ?>
   <script>alert("data telah dihapus ");
-window.location='kelas.php';</script>
+window.location='index.php?hal=kelas';</script>

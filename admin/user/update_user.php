@@ -7,5 +7,5 @@
 	
 	$query = mysqli_query($connection,"UPDATE user SET nama='$nama', telepon='$telepon', email='$email' WHERE id_user='$id_user'");
 
-	header("location:view_user.php");
+	header("location:index.php?hal=view_user");
 ?>

@@ -4,5 +4,5 @@
 	
 	$query = mysqli_query($connection,"DELETE FROM user WHERE id_user='$id_user'");
 
-	header("location:view_user.php");
+	header("location:index.php?hal=view_user");
 ?>

@@ -7,7 +7,7 @@ require_once 'koneksi.php';
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Login - Simpanan Pelajar</title>
+	<title>Login - Tabungan Anak Pintar</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/bower_components/font-awesome/css/font-awesome.min.css">
@@ -20,7 +20,7 @@ require_once 'koneksi.php';
 	<div class="login-box">
 		<div class="login-box-body">
 			<div class="login-logo">
-				<a><b>SIM</b>PEL</a>
+				<a><b>T</b>abungan Anak Pintar</a>
 				<!-- <a href=""><img src="assets/dist/img/logo3.jpg"></a> -->
 			</div>
 			<a href=""><img src="assets/dist/img/logo3.jpg" style="width: 100%; height: 100%"></a>

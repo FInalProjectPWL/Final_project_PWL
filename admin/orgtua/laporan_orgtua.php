@@ -1,4 +1,4 @@
-<?php include 'template_orgtua.php'; ?>
+
 <div class="content-wrapper">
 <section class="content-header">
   <h1>
@@ -67,4 +67,3 @@
   </div>
 </section>
 </div>
-<?php include 'footer.php'; ?>

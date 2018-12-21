@@ -1,5 +1,5 @@
 <?php
-	include "koneksi.php";
+	
 	$id = $_POST['id'];
 	$nama = $_POST['nama'];
 	$alamat = $_POST['alamat'];
@@ -10,5 +10,5 @@
 	
 	$query = mysqli_query($connection,"INSERT INTO user (id, nama, alamat, telephone, username, password, level) VALUES ('$id','$nama', '$alamat', '$telephone','$username','$password', '$level')");
 
-	header("location:pegawai.php");
+	header("index.php?hal=location:pegawai");
 ?>

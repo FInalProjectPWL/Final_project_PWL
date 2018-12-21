@@ -1,6 +1,4 @@
 <?php 
-include 'template.php'; 
-include 'koneksi.php';
 
 ?>
 
@@ -88,9 +86,8 @@ $hasil=mysqli_query($connection, $query) or die
 
  <script>
 alert("data sukses Diupdate");
-window.location='pengaturan.php';</script>
+window.location='index.php?hal=pengaturan';</script>
 <?php
 }
 ?>
 
-<?php include 'footer.php'; ?>

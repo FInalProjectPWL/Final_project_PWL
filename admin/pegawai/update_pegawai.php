@@ -68,11 +68,10 @@ $hasil=mysqli_query($connection, $query) or die
 
  <script>
 alert("data sukses Diupdate");
-window.location='pegawai.php';</script>
+window.location='index.php?hal=pegawai';</script>
 <?php
 }
 ?>
 
 </div>
 
-<?php include 'footer.php'; ?>

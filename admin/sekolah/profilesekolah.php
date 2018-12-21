@@ -1,6 +1,4 @@
 <?php 
-include 'template.php'; 
-include 'koneksi.php';
 
 $query = mysqli_query($connection,"SELECT * FROM user_sekolah");
 
@@ -163,4 +161,3 @@ $query = mysqli_query($connection,"SELECT * FROM user_sekolah");
 </div>
 
 
-<?php include 'footer.php'; ?>

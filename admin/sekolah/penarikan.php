@@ -1,6 +1,5 @@
 <?php 
-include 'template.php'; 
-include 'koneksi.php';
+
 
 $query = mysqli_query($connection,"SELECT * FROM tb_datapenarikan ORDER BY id_datapenarikan DESC");
 
@@ -128,10 +127,9 @@ $query = mysqli_query($connection,"SELECT * FROM tb_datapenarikan ORDER BY id_da
 
         $con=mysqli_query($connection, "INSERT INTO tb_datapenarikan (tanggal, no_transaksi, nama_siswa, debit, kredit, saldo) VALUES ('$_POST[tanggal]','$_POST[no_transaksi]','$_POST[nama_siswa]','$_POST[debit]','$_POST[kredit]','$_POST[saldo]')");
         echo "<script>alert('Daftar sukses!');</script>";
-        echo "<meta http-equiv='refresh' content='1;url=Penarikan.php'>";
+        echo "<meta http-equiv='refresh' content='1;url=index.php?hal=Penarikan'>";
       }
   ?>
 
 </div>
 
-<?php include 'footer.php'; ?>

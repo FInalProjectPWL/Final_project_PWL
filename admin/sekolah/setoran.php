@@ -1,5 +1,5 @@
 <?php 
-zxcvfdsdfghjh
+
 $query = mysqli_query($connection,"SELECT * FROM tb_datasetoran ORDER BY id_datasetoran DESC");
 $id_sekolah = $_SESSION['id_sekolah'];
 ?>
@@ -125,7 +125,7 @@ $id_sekolah = $_SESSION['id_sekolah'];
 
         $con=mysqli_query($connection, "INSERT INTO tb_datasetoran (tanggal, no_transaksi, nama_siswa, debit, kredit, saldo) VALUES ('$_POST[tanggal]','$_POST[no_transaksi]','$_POST[nama_siswa]','$_POST[debit]','$_POST[kredit]','$_POST[saldo]')");
         echo "<script>alert('Daftar sukses!');</script>";
-        echo "<meta http-equiv='refresh' content='1;url=setoran.php'>";
+        echo "<meta http-equiv='refresh' content='1;url=index.php?hal=setoran'>";
       }
   ?>
 

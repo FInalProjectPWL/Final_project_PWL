@@ -1,6 +1,5 @@
 <?php 
-include 'template_orgtua.php'; 
-require_once 'koneksi.php';
+
 
 session_start();
 ?>
@@ -79,4 +78,3 @@ session_start();
 	</div>
 </section>
 </div>
-<?php include 'footer.php'; ?>

@@ -1,6 +1,5 @@
 <?php 
-include 'template.php'; 
-include 'koneksi.php';
+
 
 $query = mysqli_query($connection,"SELECT * FROM tb_datakelas ORDER BY id_datakelas DESC");
 
@@ -104,10 +103,9 @@ $query = mysqli_query($connection,"SELECT * FROM tb_datakelas ORDER BY id_datake
 
         $con=mysqli_query($connection, "INSERT INTO tb_datakelas (kelas, jurusan, jml_siswa) VALUES ('$_POST[kelas]','$_POST[jurusan]','$_POST[jml_siswa]')");
         echo "<script>alert('Daftar sukses!');</script>";
-        echo "<meta http-equiv='refresh' content='1;url=kelas.php'>";
+        echo "<meta http-equiv='refresh' content='1;url=index.php?hal=kelas'>";
       }
   ?>
 
 </div>
 
-<?php include 'footer.php'; ?>
