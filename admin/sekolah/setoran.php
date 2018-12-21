@@ -1,9 +1,7 @@
 <?php 
-include 'template.php'; 
-include 'koneksi.php';
 
 $query = mysqli_query($connection,"SELECT * FROM tb_datasetoran ORDER BY id_datasetoran DESC");
-
+$id_sekolah = $_SESSION['id_sekolah'];
 ?>
 
 <div class="content-wrapper">
@@ -32,8 +30,6 @@ $query = mysqli_query($connection,"SELECT * FROM tb_datasetoran ORDER BY id_data
 								<th>No. Transaksi</th>
 								<th>Nama Siswa</th>
 								<th>Debit</th>
-								<th>Kredit</th>
-								<th>Saldo</th>
 								<th>Aksi</th>
 
 							</tr>
@@ -61,8 +57,6 @@ $query = mysqli_query($connection,"SELECT * FROM tb_datasetoran ORDER BY id_data
 								<td> <?php echo $record ['no_transaksi']; ?></td>
 								<td> <?php echo $record ['nama_siswa'] ?></td>
 								<td> <?php echo $record ['debit'] ?></td>
-								<td> <?php echo $record ['kredit'] ?></td>
-								<td> <?php echo $record ['saldo']=$record ['debit'] - $record ['kredit'] ?></td-->
 								<td><a href="update_setoran.php?id_datasetoran=<?php echo $record ['id_datasetoran']?>" class = "fa fa-pencil"></a> |
 									<a href="delete_setoran.php?id_datasetoran=<?php echo $record ['id_datasetoran']?>" class = "fa fa-trash"></a> 
 								</td>
@@ -98,20 +92,23 @@ $query = mysqli_query($connection,"SELECT * FROM tb_datasetoran ORDER BY id_data
 				</div>
 				<div class="form-group">
 					<label>Nama Siswa</label>
-					<input type="text" name="nama_siswa" class="form-control" placeholder="Nama Siswa" required= "">
+					 <select name="id_siswa" class="form-control ">
+                            <option value="">--pilih siswa--</option>
+                            <?php
+                            $no = 0;
+                            $query = mysqli_query($connection,"SELECT nama_siswa FROM tb_datasiswa join sekolah on sekolah.id_sekolah = tb_datasiswa.id_sekolah where tb_datasiswa.id_sekolah = $id_sekolah  ORDER BY nama_siswa DESC");
+  
+                            while ($row = mysqli_fetch_array($query)) {
+                            ?>
+                            <option value="<?php echo $row['id_siswa']; ?>"><?php echo $row['nama_siswa'] ?></option>
+                            <?php } ?>
+                        </select>
 				</div>
 				<div class="form-group">
 					<label>Debit</label>
 					<input type="text" name="debit" class="form-control" placeholder="Debit" required= "">
 				</div>
-				<div class="form-group">
-					<label>Kredit</label>
-					<input type="text" name="kredit" class="form-control" placeholder="Kredit" required= "">
-				</div>
-				<div class="form-group">
-					<label>Saldo</label>
-					<input type="text" name="saldo" class="form-control" placeholder="Saldo">
-				</div>
+				
 			</div>
 
 			<div class="modal-footer">
@@ -134,4 +131,3 @@ $query = mysqli_query($connection,"SELECT * FROM tb_datasetoran ORDER BY id_data
 
 </div>
 
-<?php include 'footer.php'; ?>

@@ -1,5 +1,3 @@
-<?php include 'template_orgtua.php' ?>
-<!-- ISI DASHBOARD -->
 
 <div class="content-wrapper">
 <section class="content-header">
@@ -8,7 +6,7 @@
     <a href="#" data-toggle="modal" data-target="#tambah" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
   </h1>
   <ol class="breadcrumb">
-    <li><a href=""><i class="fa fa-home"></i> Home</a></li>
+    <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
     <li class="active">Rencana Kegiatan sekolah</li>
   </ol>
 </section>
@@ -183,6 +181,3 @@
   </div>
 </div>
 <!-- ID Bayar -->
-
-<!-- ISI DASHBOARD -->
-<?php include 'footer.php' ?>

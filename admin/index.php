@@ -1,12 +1,31 @@
 <?php 
 
 require_once '../koneksi.php';
-
-$query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_dataorgtua ASC");
-
+error_reporting(0);
 session_start();
-?>
+$id_usersekolah = $_SESSION['id_usersekolah'];
+$id_dataorgtua = $_SESSION['id_dataorgtua'];
 
+
+$user=mysqli_query($connection, "SELECT * FROM usersekolah WHERE id_usersekolah='$id_usersekolah'");
+$usernum=$user->num_rows;
+$lihatuser_sekolah=$user->fetch_assoc();
+
+$user_ortu=mysqli_query($connection, "SELECT * FROM dataorgtua WHERE id_dataorgtua='$id_dataorgtua'");
+$user_ortunum=$user_ortu->num_rows;
+$lihatuser_orgtua=$user_ortu->fetch_assoc();
+
+
+if (empty($id_usersekolah || $id_dataorgtua))
+{
+
+	echo "<script>alert('anda belum login');
+					location.href='../login.php';
+					</script>";
+}
+else
+{
+		?>				
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -28,33 +47,35 @@ session_start();
 		<link rel="stylesheet" href="../assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 	</head>
 <body class="hold-transition skin-blue sidebar-mini">
+
 	<div class="wrapper">
 		<header class="main-header">
 			<a href="dashboard.php" class="logo">
-				<span class="logo-mini"><b>S</b>PEL</span>
-				<span class="logo-lg"><b>SIM</b>PEL</span>
+				<span class="logo-mini"><b>TAP</b></span>
+				<span class="logo-lg"><b>TAP</b></span>
 			</a>
 			<nav class="navbar navbar-static-top">
 				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
 					<span class="sr-only">Toggle navigation</span>
 				</a>
-				<?php
-				  $query = mysqli_query($connection, "SELECT * FROM usersekolah where id_sekolah = 6");
-   				 while ($record = mysqli_fetch_array($query)) {
-?>
+				
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
+						<?php 
+						if (isset($id_usersekolah))
+						{
+						?>
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<img src="../assets/dist/img/photo1.png" class="user-image" alt="User Image">
-								<span class="hidden-xs"> <?php echo $record['nama_sekolah']; ?></span>
+								<img src="../../assets/dist/img/photo1.png" class="user-image" alt="User Image">
+								<span class="hidden-xs"> <?php echo $lihatuser_sekolah['email']; ?></span>
 							</a>
 							<ul class="dropdown-menu">
 			
 								<li class="user-header">
-									<img src="../assets/dist/img/photo1.png" class="img-circle" alt="User Image">
+									<img src="../../assets/dist/img/photo1.png" class="img-circle" alt="User Image">
 									<p>
-										<?php echo $record['nama_sekolah']; ?>
+									
 										<small>Login Terakhir : 27/05/2018 - 13:17:00</small>
 									</p>
 								</li>
@@ -68,18 +89,54 @@ session_start();
 								</li>
 							</ul>
 						</li>
+						<?php
+						}
+						if (isset($id_dataorgtua))
+						{
+						?>
+						<li class="dropdown user user-menu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<img src="../../assets/dist/img/photo1.png" class="user-image" alt="User Image">
+								<span class="hidden-xs"> <?php echo $lihatuser_orgtua['nama_orgtua']; ?></span>
+							</a>
+							<ul class="dropdown-menu">
+			
+								<li class="user-header">
+									<img src="../../assets/dist/img/photo1.png" class="img-circle" alt="User Image">
+									<p>
+									
+										<small>Login Terakhir : 27/05/2018 - 13:17:00</small>
+									</p>
+								</li>
+								<li class="user-footer">
+									<div class="pull-left">
+										<a href="profilesekolah.php" class="btn btn-primary btn-flat">Profile</a>
+									</div>
+									<div class="pull-right">
+										<a href="../logout.php" class="btn btn-danger btn-flat">Keluar</a>
+									</div>
+								</li>
+							</ul>
+						</li>
+						<?php
+						}
+						?>
 					</ul>
 				</div>
 			</nav>
 		</header>
 		<aside class="main-sidebar">
+			<?php 
+			if (isset($id_usersekolah))
+			{
+			?>
 			<section class="sidebar">
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img src="../assets/dist/img/photo1.png" class="img-circle" alt="User Image">
+						<img src="../../assets/dist/img/photo1.png" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p><?php echo $record['nama_sekolah']; ?></p>
+						<p><!-- <?php echo $record['nama_sekolah']; ?> --></p>
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
 				</div>
@@ -95,7 +152,7 @@ session_start();
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">MENU</li>
 					<li class="active">
-						<a href="dashboard.php"><i class="fa fa-home"></i> <span>Dashbooard</span></a>
+						<a href="index.php"><i class="fa fa-home"></i> <span>Dashbooard</span></a>
 					</li>
 					<li class="treeview">
 						<a href="#">
@@ -110,6 +167,7 @@ session_start();
 							<li><a href="index.php?hal=pegawai/pegawai"><i class="fa fa-circle-o"></i> Data Pegawai</a></li>
 							<li><a href="index.php?hal=kelas"><i class="fa fa-circle-o"></i> Data Kelas</a></li>
 							<li><a href="index.php?hal=siswa"><i class="fa fa-circle-o"></i> Data Siswa</a></li>
+							<li><a href="index.php?hal=sekolah/rks"><i class="fa fa-line-chart"></i>Rencana Kegiatan Sekolah</a></li>
 						</ul>
 					</li>
 					<li class="treeview">
@@ -121,24 +179,67 @@ session_start();
 							</span>
 						</a>
 						<ul class="treeview-menu">
-							<li><a href="setoran.php"><i class="fa fa-circle-o"></i> Setoran Tunai</a></li>
-							<li><a href="penarikan.php"><i class="fa fa-circle-o"></i> Penarikan Tunai</a></li>
+							<li><a href="index.php?hal=sekolah/setoran"><i class="fa fa-circle-o"></i> Setoran Tunai</a></li>
+							<li><a href="index.php?hal=sekolah/penarikan"><i class="fa fa-circle-o"></i> Penarikan Tunai</a></li>
 						</ul>
 					</li>
 					<li>
-						<a href="index.php?hal=laporan"><i class="fa fa-print"></i> <span>Laporan</span></a>
+						<a href="index.php?hal=sekolah/laporan"><i class="fa fa-print"></i> <span>Laporan</span></a>
 					</li>
 					<li>
-						<a href="index.php?hal=pengaturan"><i class="fa fa-cog"></i> <span>Pengaturan</span></a>
+						<a href="index.php?hal=sekolah/pengaturan"><i class="fa fa-cog"></i> <span>Pengaturan</span></a>
 					</li>
 					<li>
-						<a href="login.php"><i class="fa fa-sign-out"></i> <span>Keluar</span></a>
+						<a href="../logout.php"><i class="fa fa-sign-out"></i> <span>Keluar</span></a>
 					</li>
 				</ul>
 			</section>
-
-		<?php } ?>
-	
+			<?php
+			}
+			if (isset($id_dataorgtua))
+			{
+			?>
+			<section class="sidebar">
+				<div class="user-panel">
+					<div class="pull-left image">
+						<img src="../../assets/dist/img/photo1.png" class="img-circle" alt="User Image">
+					</div>
+					<div class="pull-left info">
+						<p><!-- <?php echo $record['nama_sekolah']; ?> --></p>
+						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+					</div>
+				</div>
+				<form action="#" method="get" class="sidebar-form">
+					<div class="input-group">
+						<input type="text" name="q" class="form-control" placeholder="Search...">
+						<span class="input-group-btn">
+							<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+							</button>
+						</span>
+					</div>
+				</form>
+				<ul class="sidebar-menu" data-widget="tree">
+					<li class="header">MENU</li>
+					<li class="active">
+						<a href="index.php?hal=dashboard"><i class="fa fa-home"></i> <span>Dashbooard</span></a>
+					</li>
+					<li>
+				        <a href="index.php?hal=sekolah/rks"><i class="fa fa-line-chart"></i> <span>Rencana Kegiatan Sekolah</span></a>
+				    </li>
+				    <li>
+				        <a href="index.php?hal=laporan_orgtua"><i class="fa fa-print"></i> <span>Laporan</span></a>
+				    </li>
+				    <li>
+				        <a href="index.php?hal=pengaturan_orgtua"><i class="fa fa-cog"></i> <span>Pengaturan</span></a>
+				    </li>
+				    <li>
+				        <a href="../logout.php"><i class="fa fa-sign-out"></i> <span>Keluar</span></a>
+				    </li>
+				</ul>
+			</section>
+			<?php
+				}
+			?>
 		</aside>
 
 		<?php
@@ -157,3 +258,7 @@ session_start();
 </body>
 </html>
 <?php include 'footer.php'; ?>
+
+<?php
+}
+?>

@@ -29,7 +29,7 @@ require_once 'koneksi.php';
 			<p class="login-box-msg">Masukkan email dan password anda</p>
 			<form method="post">
 				<div class="form-group has-feedback">
-					<input type="email" class="form-control" id="email" name="email" placeholder="Masukan Email">
+					<input type="text" class="form-control" id="email" name="email" placeholder="Masukan Email">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
@@ -58,15 +58,20 @@ require_once 'koneksi.php';
 		if (isset($_POST["submit"]))
 			{
 				$email=$_POST["email"];
-				$password=$_POST["password"];
+				$password=md5($_POST["password"]);
 				$loginuser=mysqli_query($connection, "SELECT * FROM usersekolah WHERE email='$email' AND password='$password'");
 				$validakun=$loginuser->num_rows;
 				if ($validakun==1)
 				{
 					$akun=$loginuser->fetch_assoc();
-					$_SESSION["user"]=$akun;
-					echo "<script>alert('Anda sukses login');</script>";
-					echo "<meta http-equiv='refresh' content='1;url=dashboard.php'>";
+					$_SESSION["email"]=$akun['email'];
+					$_SESSION["password"]=$akun['password'];
+					$_SESSION["id_usersekolah"]=$akun['id_usersekolah'];
+					$_SESSION["id_sekolah"]=$akun['id_sekolah'];
+
+					echo "<script>alert('anda berhasil login');
+					location.href='admin/index.php';
+					</script>";
 				}
 				else
 				{

@@ -58,15 +58,17 @@ require_once 'koneksi.php';
 		if (isset($_POST["submit"]))
 			{
 				$username=$_POST["username"];
-				$password=$_POST["password"];
-				$loginuser=mysqli_query($connection, "SELECT * FROM tb_dataorgtua WHERE username='$username' AND password='$password'");
+				$password=md5($_POST["password"]);
+				$loginuser=mysqli_query($connection, "SELECT * FROM dataorgtua WHERE username='$username' AND password='$password'");
 				$validakun=$loginuser->num_rows;
 				if ($validakun==1)
 				{
 					$akun=$loginuser->fetch_assoc();
-					$_SESSION["user"]=$akun;
-					echo "<script>alert('Anda sukses login');</script>";
-					echo "<meta http-equiv='refresh' content='1;url=dashboard_orgtua.php'>";
+					$_SESSION["id_dataorgtua"]=$akun['id_dataorgtua'];
+					$_SESSION["nama_orgtua"]=$akun['nama_orgtua'];
+					echo "<script>alert('anda berhasil login');
+					location.href='admin/index.php';
+					</script>";
 				}
 				else
 				{
