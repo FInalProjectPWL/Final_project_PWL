@@ -190,7 +190,7 @@ else
 						<a href="index.php?hal=sekolah/pengaturan"><i class="fa fa-cog"></i> <span>Pengaturan</span></a>
 					</li>
 					<li>
-						<a href="../logout.php"><i class="fa fa-sign-out"></i> <span>Keluar</span></a>
+						<a href="../logout_sekolah.php"><i class="fa fa-sign-out"></i> <span>Keluar</span></a>
 					</li>
 				</ul>
 			</section>
@@ -233,7 +233,7 @@ else
 				        <a href="index.php?hal=pengaturan_orgtua"><i class="fa fa-cog"></i> <span>Pengaturan</span></a>
 				    </li>
 				    <li>
-				        <a href="../logout.php"><i class="fa fa-sign-out"></i> <span>Keluar</span></a>
+				        <a href="../logout_orgtua.php"><i class="fa fa-sign-out"></i> <span>Keluar</span></a>
 				    </li>
 				</ul>
 			</section>
