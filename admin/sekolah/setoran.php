@@ -1,5 +1,11 @@
 <?php 
-
+if (isset($_GET['hapus'])) {
+    $queryHapus = mysqli_query($connection,"DELETE FROM tb_datasetoran where id_datasetoran = '" . $_GET['hapus'] . "'");
+    if ($queryHapus) {
+        echo "<script> alert('Data Berhasil Dihapus'); location.href='index.php?hal=sekolah/setoran' </script>";
+        exit;
+    }
+}
 $query = mysqli_query($connection,"SELECT * FROM tb_datasetoran ORDER BY id_datasetoran DESC");
 $id_sekolah = $_SESSION['id_sekolah'];
 ?>
@@ -29,6 +35,8 @@ $id_sekolah = $_SESSION['id_sekolah'];
 								<th>Tanggal</th>
 								<th>No. Transaksi</th>
 								<th>Nama Siswa</th>
+								<th>Kelas</th>
+								<th>Jurusan</th>
 								<th>Debit</th>
 								<th>Aksi</th>
 
@@ -43,9 +51,16 @@ $id_sekolah = $_SESSION['id_sekolah'];
 						<?php
 
 						$no=1;
-						$query = mysqli_query($connection," SELECT * FROM tb_datasetoran");
+						$query = mysqli_query($connection," SELECT * FROM tb_datasetoran 
+															join tb_datasiswa on tb_datasiswa.id_siswa = tb_datasetoran.id_siswa 
+															join sekolah on sekolah.id_sekolah = tb_datasiswa.id_sekolah 
+															join tb_datakelas on tb_datakelas.id_datakelas = tb_datasiswa.id_datakelas 
+															join saldo on saldo.id_siswa = tb_datasiswa.id_siswa
+															where  sekolah.id_sekolah = $id_sekolah");
 						while($record= mysqli_fetch_array($query)) {
+							
 							?>
+
 						<!--?php
 						$result=mysqli_query('SELECT tb_datasetoran.saldo, tb_datasetoran.debit, tb_datasetoran.kredit FROM tb_datasetoran INNER JOIN tb_datapenarikan ON tb_datapenarikan.id_datapenarikan=tb_datapenarikan.id_datapenarikan ORDER BY tb_datasetoran.id_datasetoran');
 						?-->
@@ -56,9 +71,15 @@ $id_sekolah = $_SESSION['id_sekolah'];
 								<td> <?php echo $record ['tanggal']; ?></td>
 								<td> <?php echo $record ['no_transaksi']; ?></td>
 								<td> <?php echo $record ['nama_siswa'] ?></td>
+								<td> <?php echo $record ['kelas'] ?></td>
+								<td> <?php echo $record ['jurusan'] ?></td>
 								<td> <?php echo $record ['debit'] ?></td>
 								<td><a href="update_setoran.php?id_datasetoran=<?php echo $record ['id_datasetoran']?>" class = "fa fa-pencil"></a> |
-									<a href="delete_setoran.php?id_datasetoran=<?php echo $record ['id_datasetoran']?>" class = "fa fa-trash"></a> 
+									<a href="?hal=sekolah/setoran&hapus=<?php echo $record ['id_datasetoran']?>" >
+									 <button class="btn btn-danger" type="submit" name="hapus"><i
+                                                        class="fa fa-trash"></i> 
+                                     </button>
+                                    </a> 
 								</td>
 							</tr>
 						
@@ -96,9 +117,15 @@ $id_sekolah = $_SESSION['id_sekolah'];
                             <option value="">--pilih siswa--</option>
                             <?php
                             $no = 0;
-                            $query = mysqli_query($connection,"SELECT nama_siswa FROM tb_datasiswa join sekolah on sekolah.id_sekolah = tb_datasiswa.id_sekolah where tb_datasiswa.id_sekolah = $id_sekolah  ORDER BY nama_siswa DESC");
+                            $query = mysqli_query($connection,"SELECT * FROM tb_datasiswa 
+                            	join sekolah on sekolah.id_sekolah = tb_datasiswa.id_sekolah 
+                            	join saldo on saldo.id_siswa = tb_datasiswa.id_siswa
+                            	where tb_datasiswa.id_sekolah = $id_sekolah
+                            	  ORDER BY nama_siswa DESC");
   
                             while ($row = mysqli_fetch_array($query)) {
+                            $id_saldo = $row ['id_saldo'];
+							$saldo = $row ['saldo'];
                             ?>
                             <option value="<?php echo $row['id_siswa']; ?>"><?php echo $row['nama_siswa'] ?></option>
                             <?php } ?>
@@ -121,11 +148,18 @@ $id_sekolah = $_SESSION['id_sekolah'];
 </form>
 
 <?php 
+
       if (isset($_POST['submit'])) {
 
-        $con=mysqli_query($connection, "INSERT INTO tb_datasetoran (tanggal, no_transaksi, nama_siswa, debit, kredit, saldo) VALUES ('$_POST[tanggal]','$_POST[no_transaksi]','$_POST[nama_siswa]','$_POST[debit]','$_POST[kredit]','$_POST[saldo]')");
-        echo "<script>alert('Daftar sukses!');</script>";
-        echo "<meta http-equiv='refresh' content='1;url=index.php?hal=setoran'>";
+        $query=mysqli_query($connection, "INSERT INTO tb_datasetoran (tanggal, no_transaksi, id_siswa, debit,id_saldo) VALUES ('$_POST[tanggal]','$_POST[no_transaksi]','$_POST[id_siswa]','$_POST[debit]',$id_saldo)");
+
+
+        $jumlahsaldo = $_POST['debit'] + $saldo;
+
+        $queryupdatesetoran=mysqli_query($connection,"UPDATE saldo set saldo = $jumlahsaldo where id_saldo = $id_saldo ");
+
+
+	          echo "<script> alert('Data Berhasil Disimpan'); location.href='index.php?hal=sekolah/setoran' </script>";
       }
   ?>
 
