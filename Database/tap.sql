@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Des 2018 pada 14.54
+-- Waktu pembuatan: 23 Des 2018 pada 09.40
 -- Versi server: 10.1.30-MariaDB
 -- Versi PHP: 7.2.2
 
@@ -117,15 +117,16 @@ INSERT INTO `rks_status` (`id_status_rks`, `id_rks`, `id_siswa`, `status_rks`) V
 
 CREATE TABLE `saldo` (
   `id_saldo` int(20) NOT NULL,
-  `saldo` text NOT NULL
+  `saldo` text NOT NULL,
+  `id_siswa` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `saldo`
 --
 
-INSERT INTO `saldo` (`id_saldo`, `saldo`) VALUES
-(1, '300000');
+INSERT INTO `saldo` (`id_saldo`, `saldo`, `id_siswa`) VALUES
+(1, '39574', 1);
 
 -- --------------------------------------------------------
 
@@ -168,7 +169,7 @@ CREATE TABLE `tb_datakelas` (
 --
 
 INSERT INTO `tb_datakelas` (`id_datakelas`, `kelas`, `jurusan`, `jml_siswa`, `id_sekolah`) VALUES
-(1, 'X-2', 'NA', '11', 1),
+(1, 'X-2', 'RPL', '11', 1),
 (3, 'XI-2', 'IPS 1', '44', 1),
 (10, 'X-1', 'NA', '11', 1);
 
@@ -210,6 +211,14 @@ CREATE TABLE `tb_datapenarikan` (
   `id_saldo` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `tb_datapenarikan`
+--
+
+INSERT INTO `tb_datapenarikan` (`id_datapenarikan`, `tanggal`, `no_transaksi`, `id_siswa`, `kredit`, `id_saldo`) VALUES
+(1, '2018-12-23', '1', 1, 1000, 1),
+(2, '2018-12-23', '1231', 1, 10000, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -224,6 +233,17 @@ CREATE TABLE `tb_datasetoran` (
   `debit` int(100) NOT NULL,
   `id_saldo` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tb_datasetoran`
+--
+
+INSERT INTO `tb_datasetoran` (`id_datasetoran`, `tanggal`, `no_transaksi`, `id_siswa`, `debit`, `id_saldo`) VALUES
+(1, '2018-12-23', '1', 1, 10000, 1),
+(10, '2018-12-23', '1233', 1, 1000, 1),
+(11, '2018-12-23', '234759', 1, 10000, 1),
+(12, '2018-12-23', '1232131', 1, 10000, 1),
+(13, '2018-12-23', '12321321', 1, 8574, 1);
 
 -- --------------------------------------------------------
 
@@ -249,7 +269,7 @@ CREATE TABLE `tb_datasiswa` (
 --
 
 INSERT INTO `tb_datasiswa` (`id_siswa`, `nama_siswa`, `no_induk`, `nisn`, `ttl`, `id_bank`, `no_rek`, `id_datakelas`, `id_saldo`, `id_sekolah`) VALUES
-(1, 'willy', '123123', '12312', '13011998', 1, 1312312312, 2, 1, 1);
+(1, 'willy', '123123', '12312', '13011998', 1, 1312312312, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -444,13 +464,13 @@ ALTER TABLE `tb_datapegawai`
 -- AUTO_INCREMENT untuk tabel `tb_datapenarikan`
 --
 ALTER TABLE `tb_datapenarikan`
-  MODIFY `id_datapenarikan` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_datapenarikan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_datasetoran`
 --
 ALTER TABLE `tb_datasetoran`
-  MODIFY `id_datasetoran` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_datasetoran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_datasiswa`
