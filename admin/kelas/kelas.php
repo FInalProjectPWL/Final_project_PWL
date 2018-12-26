@@ -1,7 +1,5 @@
 <?php 
 
-
-/*$query = mysqli_query($connection,"SELECT * FROM tb_datakelas ORDER BY id_datakelas DESC");*/
 $id_sekolah = $_SESSION['id_sekolah'];
 
 ?>

@@ -1,20 +1,15 @@
 <?php 
-if (isset($_GET['hapus'])) {
-    $queryHapus = mysqli_query($connection,"DELETE * FROM tb_datapegawai where id_datapegawai = '" . $_GET['hapus'] . "'");
-    if ($queryHapus) {
-        echo "<script> alert('Data Berhasil Dihapus'); location.href='index.php?hal=pegawai/pegawai' </script>";
-        exit;
-    }
-}
+
 $query = mysqli_query($connection,"SELECT * FROM tb_datapegawai ORDER BY id_datapegawai DESC");
 $id_datapegawai = $_SESSION['id_datapegawai'];
+
 ?>
 
 <div class="content-wrapper">
 <section class="content-header">
   <h1>
    Data Pegawai
-    <a href="" data-toggle="modal" data-target="#tambah" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
+    <a href="#" data-toggle="modal" data-target="#tambah" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
   </h1>
   <ol class="breadcrumb">
     <li><a href="dashboard.php"><i class="fa fa-home"></i> Home</a></li>
@@ -58,8 +53,8 @@ $id_datapegawai = $_SESSION['id_datapegawai'];
 								<td> <?php echo $record ['tgl_lahir']; ?></td>
 								<td> <?php echo $record ['alamat'] ?></td>
 								<td> <?php echo $record ['no_hp'] ?></td>
-								<td><a href="update_pegawai.php?id_datapegawai=<?php echo $record ['id_datapegawai']?>" class = "fa fa-pencil"></a> |
-									<a href="delete_pegawai.php?id_datapegawai=<?php echo $record ['id_datapegawai']?>" class = "fa fa-trash"></a> 
+								<td><a href="index.php?hal=pegawai/update_pegawai&id=<?php echo $record ['id_datapegawai']?>" class = "fa fa-pencil"></a> |
+									<a href="index.php?hal=pegawai/delete_pegawai&id=<?php echo $record ['id_datapegawai']?>" class = "fa fa-trash"></a> 
 								</td>
 							</tr>
 						
@@ -114,7 +109,7 @@ $id_datapegawai = $_SESSION['id_datapegawai'];
 
         $con=mysqli_query($connection, "INSERT INTO tb_datapegawai (nama_pegawai, tgl_lahir, alamat, no_hp) VALUES ('$_POST[nama_pegawai]','$_POST[tgl_lahir]','$_POST[alamat]','$_POST[no_hp]')");
         echo "<script>alert('Daftar sukses!');</script>";
-        echo "<meta http-equiv='refresh' content='1;url=index.php?hal=pegawai'>";
+      	echo "<meta http-equiv='refresh' content='1;url=index.php?hal=pegawai/pegawai'>";
       }
   ?>
 

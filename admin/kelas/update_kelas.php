@@ -21,7 +21,7 @@ while($record = mysqli_fetch_array($query)){
 					<table id="example1" class="table table-striped table-bordered">
 						<tr>
 							<td>ID</td>
-							<td><input name="id_kelas" type="text" value="<?php echo $record['id_datakelas']?>"></td>
+							<td><input name="id_kelas" type="text" readonly value="<?php echo $record['id_datakelas']?>"></td>
 						</tr>
 						<tr>
 							<td>Kelas</td>
