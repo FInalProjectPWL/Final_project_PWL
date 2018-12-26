@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Des 2018 pada 09.40
--- Versi server: 10.1.30-MariaDB
--- Versi PHP: 7.2.2
+-- Waktu pembuatan: 26 Des 2018 pada 14.16
+-- Versi server: 10.1.37-MariaDB
+-- Versi PHP: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -53,7 +53,7 @@ INSERT INTO `bank` (`id_bank`, `bank_name`, `bank_status`) VALUES
 
 CREATE TABLE `dataorgtua` (
   `id_dataorgtua` int(15) NOT NULL,
-  `id_siswa` varchar(50) NOT NULL,
+  `id_siswa` int(20) NOT NULL,
   `nama_orgtua` varchar(50) NOT NULL,
   `alamat` varchar(100) NOT NULL,
   `telepon` varchar(20) NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE `dataorgtua` (
 --
 
 INSERT INTO `dataorgtua` (`id_dataorgtua`, `id_siswa`, `nama_orgtua`, `alamat`, `telepon`, `username`, `password`) VALUES
-(1, '1', 'wijaya', 'a', '123', 'a', '0cc175b9c0f1b6a831c399e269772661');
+(1, 1, 'wijaya', 'a', '123', 'a', '0cc175b9c0f1b6a831c399e269772661');
 
 -- --------------------------------------------------------
 
@@ -171,7 +171,10 @@ CREATE TABLE `tb_datakelas` (
 INSERT INTO `tb_datakelas` (`id_datakelas`, `kelas`, `jurusan`, `jml_siswa`, `id_sekolah`) VALUES
 (1, 'X-2', 'RPL', '11', 1),
 (3, 'XI-2', 'IPS 1', '44', 1),
-(10, 'X-1', 'NA', '11', 1);
+(10, 'X-1', 'NA', '11', 1),
+(12, 'eer', '', '12', 0),
+(13, 'XI2', '', '18', 0),
+(14, 'X3', '', '20', 0);
 
 -- --------------------------------------------------------
 
@@ -239,11 +242,9 @@ CREATE TABLE `tb_datasetoran` (
 --
 
 INSERT INTO `tb_datasetoran` (`id_datasetoran`, `tanggal`, `no_transaksi`, `id_siswa`, `debit`, `id_saldo`) VALUES
-(1, '2018-12-23', '1', 1, 10000, 1),
 (10, '2018-12-23', '1233', 1, 1000, 1),
 (11, '2018-12-23', '234759', 1, 10000, 1),
-(12, '2018-12-23', '1232131', 1, 10000, 1),
-(13, '2018-12-23', '12321321', 1, 8574, 1);
+(12, '2018-12-23', '1232131', 1, 10000, 1);
 
 -- --------------------------------------------------------
 
@@ -342,6 +343,13 @@ ALTER TABLE `bank`
   ADD PRIMARY KEY (`id_bank`);
 
 --
+-- Indeks untuk tabel `dataorgtua`
+--
+ALTER TABLE `dataorgtua`
+  ADD PRIMARY KEY (`id_dataorgtua`),
+  ADD KEY `id_siswa` (`id_siswa`);
+
+--
 -- Indeks untuk tabel `rks`
 --
 ALTER TABLE `rks`
@@ -425,6 +433,12 @@ ALTER TABLE `bank`
   MODIFY `id_bank` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT untuk tabel `dataorgtua`
+--
+ALTER TABLE `dataorgtua`
+  MODIFY `id_dataorgtua` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT untuk tabel `rks`
 --
 ALTER TABLE `rks`
@@ -452,7 +466,7 @@ ALTER TABLE `sekolah`
 -- AUTO_INCREMENT untuk tabel `tb_datakelas`
 --
 ALTER TABLE `tb_datakelas`
-  MODIFY `id_datakelas` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_datakelas` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_datapegawai`
@@ -501,10 +515,10 @@ ALTER TABLE `usersekolah`
 --
 
 --
--- Ketidakleluasaan untuk tabel `userorgtua`
+-- Ketidakleluasaan untuk tabel `dataorgtua`
 --
-ALTER TABLE `userorgtua`
-  ADD CONSTRAINT `userorgtua_ibfk_1` FOREIGN KEY (`id_dataorgtua`) REFERENCES `tb_dataorgtua` (`id_dataorgtua`);
+ALTER TABLE `dataorgtua`
+  ADD CONSTRAINT `dataorgtua_ibfk_1` FOREIGN KEY (`id_siswa`) REFERENCES `tb_datasiswa` (`id_siswa`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
