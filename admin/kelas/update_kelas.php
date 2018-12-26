@@ -1,7 +1,6 @@
 <?php 
-session_start();
-
-$query = mysqli_query($connection,"SELECT * FROM tb_datakelas where id_datakelas='".$_GET['id_datakelas']."' ");
+$id = $_GET['id'];
+$query = mysqli_query($connection,"SELECT * FROM tb_datakelas where id_datakelas=$id");
 while($record = mysqli_fetch_array($query)){
 ?>
 
@@ -64,7 +63,7 @@ $hasil=mysqli_query($connection, $query) or die
 
  <script>
 alert("data sukses Diupdate");
-window.location='kelas.php';</script>
+window.location='index.php?hal=kelas/kelas';</script>
 <?php
 }
 ?>

@@ -2,6 +2,7 @@
 
 
 /*$query = mysqli_query($connection,"SELECT * FROM tb_datakelas ORDER BY id_datakelas DESC");*/
+$id_sekolah = $_SESSION['id_sekolah'];
 
 ?>
 
@@ -50,8 +51,10 @@
 								<td> <?php echo $record ['kelas']; ?></td>
 								<td> <?php echo $record ['jurusan']; ?></td>
 								<td> <?php echo $record ['jml_siswa'] ?></td>
-								<td><a href="update_kelas.php?id_datakelas=<?php echo $record ['id_datakelas'];?>" class = "fa fa-pencil"></a> |
-									<a href="delete_kelas.php?id_datakelas=<?php echo $record ['id_datakelas'];?>" class = "fa fa-trash"></a> 
+								<td>
+
+									<a href="index.php?hal=kelas/update_kelas&id=<?php echo $record ['id_datakelas'];?>" class = "fa fa-pencil"></a> |
+									<a href="index.php?hal=kelas/delete_kelas&id=<?php echo $record ['id_datakelas'];?>" class = "fa fa-trash"></a> 
 								</td>
 							</tr>
 						
@@ -81,7 +84,8 @@
 				</div>
 				<div class="form-group">
 					<label>Jurusan</label>
-					<input type="text" name=jurusan" class="form-control" placeholder="Jurusan" required= "">
+					<input type="text" name="jurusan" class="form-control" placeholder="Jurusan" required= "">
+
 				</div>
 				<div class="form-group">
 					<label>Jumlah Siswa</label>
@@ -100,7 +104,10 @@
 <?php 
       if (isset($_POST['submit'])) {
 
-        $con=mysqli_query($connection, "INSERT INTO tb_datakelas (kelas, jurusan, jml_siswa) VALUES ('$_POST[kelas]','$_POST[jurusan]','$_POST[jml_siswa]')");
+        $con=mysqli_query($connection, "INSERT INTO tb_datakelas (kelas, jurusan, jml_siswa,id_sekolah) VALUES ('$_POST[kelas]','$_POST[jurusan]','$_POST[jml_siswa]',$id_sekolah)");
+
+    
+
         echo "<script>alert('Daftar sukses!');</script>";
         echo "<meta http-equiv='refresh' content='1;url=index.php?hal=kelas/kelas'>";
       }
