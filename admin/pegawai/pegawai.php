@@ -1,8 +1,13 @@
 <?php 
-
-
-/*$query = mysqli_query($connection,"SELECT * FROM tb_datakelas ORDER BY id_datakelas DESC");*/
-
+if (isset($_GET['hapus'])) {
+    $queryHapus = mysqli_query($connection,"DELETE * FROM tb_datapegawai where id_datapegawai = '" . $_GET['hapus'] . "'");
+    if ($queryHapus) {
+        echo "<script> alert('Data Berhasil Dihapus'); location.href='index.php?hal=pegawai/pegawai' </script>";
+        exit;
+    }
+}
+$query = mysqli_query($connection,"SELECT * FROM tb_datapegawai ORDER BY id_datapegawai DESC");
+$id_datapegawai = $_SESSION['id_datapegawai'];
 ?>
 
 <div class="content-wrapper">

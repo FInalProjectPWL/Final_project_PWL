@@ -165,8 +165,8 @@ else
 						<ul class="treeview-menu">
 							<li><a href="index.php?hal=orgtua/dataorgtua"><i class="fa fa-circle-o"></i> Data Orangtua</a></li>
 							<li><a href="index.php?hal=pegawai/pegawai"><i class="fa fa-circle-o"></i> Data Pegawai</a></li>
-							<li><a href="index.php?hal=kelas"><i class="fa fa-circle-o"></i> Data Kelas</a></li>
-							<li><a href="index.php?hal=siswa"><i class="fa fa-circle-o"></i> Data Siswa</a></li>
+							<li><a href="index.php?hal=kelas/kelas"><i class="fa fa-circle-o"></i> Data Kelas</a></li>
+							<li><a href="index.php?hal=siswa/siswa"><i class="fa fa-circle-o"></i> Data Siswa</a></li>
 							<li><a href="index.php?hal=sekolah/rks"><i class="fa fa-line-chart"></i>Rencana Kegiatan Sekolah</a></li>
 						</ul>
 					</li>

@@ -61,10 +61,6 @@ $id_sekolah = $_SESSION['id_sekolah'];
 							
 							?>
 
-						<!--?php
-						$result=mysqli_query('SELECT tb_datasetoran.saldo, tb_datasetoran.debit, tb_datasetoran.kredit FROM tb_datasetoran INNER JOIN tb_datapenarikan ON tb_datapenarikan.id_datapenarikan=tb_datapenarikan.id_datapenarikan ORDER BY tb_datasetoran.id_datasetoran');
-						?-->
-
 							<tr class="active">
 								<td> <?php echo $no; ?></td>
 								<td> <?php echo $record ['id_datasetoran']; ?></td>

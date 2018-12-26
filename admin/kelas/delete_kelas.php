@@ -1,5 +1,6 @@
 <?php
 
+
  	if($_GET['id_datakelas'] != "");
  	{
  	mysqli_query($connection,"DELETE FROM tb_datakelas where id_datakelas='".$_GET['id_datakelas']."'");

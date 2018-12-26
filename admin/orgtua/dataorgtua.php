@@ -1,14 +1,16 @@
 <?php 
+include 'template.php'; 
+include 'koneksi.php';
+$query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_dataorgtua ASC");
 
-/*$query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_dataorgtua ASC");
-*/
 ?>
+
 
 <div class="content-wrapper">
 <section class="content-header">
   <h1>
     Data Orang Tua
-    <a href="index.php" data-toggle="modal" data-target="#tambah" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
+    <a href="#" data-toggle="modal" data-target="#tambah" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
@@ -81,11 +83,6 @@
         <h4 class="modal-title">Tambah Data Orang Tua</h4>
       </div>
    <div class="modal-body">
-
-        <div class="form-group">
-          <label>Nama Siswa</label>
-          <input type="text" name="nama_siswa" class="form-control" placeholder="Nama Siswa" required="">
-        </div>
         
         <div class="form-group">
           <label>Nama Orang Tua</label>
@@ -121,7 +118,7 @@
 <?php 
       if (isset($_POST['submit'])) {
 
-        $con=mysqli_query($connection, "INSERT INTO tb_dataorgtua ( nama_siswa, nama_orgtua, alamat, telepon, username, password) VALUES ('$_POST[nama_siswa]','$_POST[nama_orgtua]','$_POST[alamat]','$_POST[telepon]','$_POST[username]','$_POST[password]')");
+        $con=mysqli_query($connection, "INSERT INTO dataorgtua (nama_orgtua, alamat, telepon, username, password) VALUES ('$_POST[nama_orgtua]','$_POST[alamat]','$_POST[telepon]','$_POST[username]','$_POST[password]')");
         echo "<script>alert('Daftar sukses!');</script>";
         echo "<meta http-equiv='refresh' content='1;url=index.php?hal=orgtua/dataorgtua'>";
       }
