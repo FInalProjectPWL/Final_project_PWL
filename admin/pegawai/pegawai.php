@@ -14,7 +14,7 @@ $id_datapegawai = $_SESSION['id_datapegawai'];
 <section class="content-header">
   <h1>
    Data Pegawai
-    <a href="index.php" data-toggle="modal" data-target="#tambah" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
+    <a href="" data-toggle="modal" data-target="#tambah" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
   </h1>
   <ol class="breadcrumb">
     <li><a href="dashboard.php"><i class="fa fa-home"></i> Home</a></li>
