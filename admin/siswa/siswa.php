@@ -2,6 +2,7 @@
 
 
 /*$query = mysqli_query($connection,"SELECT * FROM tb_datakelas ORDER BY id_datakelas DESC");*/
+$id_sekolah = $_SESSION['id_sekolah'];
 
 ?>
 
@@ -30,7 +31,9 @@
 								<th>No. Induk</th>
 								<th>NISN</th>
 								<th>TTL</th>
+								<th>Kelas</th>
 								<th>No. Rek</th>
+								<th>Saldo</th>
 								<th>Aksi</th>
 							</tr>
 						</thead>
@@ -43,7 +46,11 @@
 						<?php
 
 						$no=1;
-						$query = mysqli_query($connection," SELECT * FROM tb_datasiswa");
+						$query = mysqli_query($connection," SELECT * FROM tb_datasiswa 
+							join tb_datakelas on tb_datakelas.id_datakelas = tb_datasiswa.id_datakelas 
+							join saldo on saldo.id_saldo = tb_datasiswa.id_saldo
+							where tb_datasiswa.id_sekolah=$id_sekolah
+							");
 						while($record= mysqli_fetch_array($query)) {
 							?>
 
@@ -53,7 +60,9 @@
 								<td> <?php echo $record ['no_induk']; ?></td>
 								<td> <?php echo $record ['nisn']; ?></td>
 								<td> <?php echo $record ['ttl']; ?></td>
+								<td> <?php echo $record ['kelas']; ?></td>
 								<td> <?php echo $record ['no_rek'] ?></td>
+								<td> <?php echo $record ['saldo'] ?></td>
 								<td><a href="update_siswa.php?id_datasiswa=<?php echo $record ['id_datasiswa']?>" class = "fa fa-pencil"></a> |
 									<a href="delete_siswa.php?id_datasiswa=<?php echo $record ['id_datasiswa']?>" class = "fa fa-trash"></a> 
 								</td>
@@ -99,6 +108,21 @@
 					<label>No. Rekening</label>
 					<input type="number" name="no_rek" class="form-control" placeholder="No. Rek" required= "">
 				</div>
+				<div class="form-group">
+					<label>Kelas</label>
+					 <select name="kelas" class="form-control ">
+                            <option value="">--pilih kelas--</option>
+                            <?php
+                            $no = 0;
+                            $query = mysqli_query($connection," SELECT * FROM tb_datakelas where tb_datakelas.id_sekolah=$id_sekolah");
+  
+                            while ($row = mysqli_fetch_array($query)) {
+                           
+                            ?>
+                            <option value="<?php echo $row['id_datakelas']; ?>"><?php echo $row['kelas'] ?></option>
+                            <?php } ?>
+                        </select>
+				</div>
 			</div>
 
 			<div class="modal-footer">
@@ -110,13 +134,18 @@
 	</div>
 </form>
 <?php 
+
+	$id_saldo = (rand(2,1000));
+	$id_siswa = (rand(2,1000));
       if (isset($_POST['submit'])) {
 
-        $con=mysqli_query($connection, "INSERT INTO tb_datasiswa (nama_siswa, no_induk, nisn, ttl, no_rek) VALUES ('$_POST[nama_siswa]','$_POST[no_induk]','$_POST[nisn]','$_POST[ttl]','$_POST'$_POST[no_rek]')");
+        $con=mysqli_query($connection, "INSERT INTO tb_datasiswa (id_siswa,nama_siswa, no_induk, nisn, ttl, no_rek,id_datakelas,id_saldo,id_sekolah) VALUES ($id_siswa,'$_POST[nama_siswa]','$_POST[no_induk]','$_POST[nisn]','$_POST[tgl_lahir]','$_POST[no_rek]','$_POST[kelas]',$id_saldo,$id_sekolah)");
+
+        $con2=mysqli_query($connection, "INSERT INTO saldo (id_saldo, saldo, id_siswa) VALUES ($id_saldo,0,$id_siswa)");
+
+
         echo "<script>alert('Daftar sukses!');</script>";
         echo "<meta http-equiv='refresh' content='1;url=index.php?hal=siswa/siswa'>";
       }
   ?>
-
-</div>
 

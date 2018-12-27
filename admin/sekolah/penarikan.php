@@ -153,10 +153,14 @@ $id_sekolah = $_SESSION['id_sekolah'];
 
         $query=mysqli_query($connection, "INSERT INTO tb_datapenarikan (tanggal, no_transaksi, id_siswa, kredit,id_saldo) VALUES ('$_POST[tanggal]','$_POST[no_transaksi]','$_POST[id_siswa]','$_POST[kredit]',$id_saldo)");
 
+		$saldo=mysqli_query($connection, "SELECT * FROM saldo WHERE id_siswa=$_POST[id_siswa] ");
+        $saldonum=$saldo->num_rows;
+        $lihatsaldo=$saldo->fetch_assoc();
 
-        $jumlahsaldo =  $saldo - $_POST['kredit'] ;
+        $jumlahsaldo =  $lihatsaldo['saldo'] - $_POST[kredit] ;
 
-        $queryupdatesetoran=mysqli_query($connection,"UPDATE saldo set saldo = $jumlahsaldo where id_saldo = $id_saldo ");
+        $queryupdatesaldo=mysqli_query($connection,"UPDATE saldo set saldo = $jumlahsaldo where id_siswa = $_POST[id_siswa] ");
+
 
 
 	          echo "<script> alert('Data Berhasil Disimpan'); location.href='index.php?hal=sekolah/penarikan' </script>";

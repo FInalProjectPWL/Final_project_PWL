@@ -149,10 +149,13 @@ $id_sekolah = $_SESSION['id_sekolah'];
 
         $query=mysqli_query($connection, "INSERT INTO tb_datasetoran (tanggal, no_transaksi, id_siswa, debit,id_saldo) VALUES ('$_POST[tanggal]','$_POST[no_transaksi]','$_POST[id_siswa]','$_POST[debit]',$id_saldo)");
 
+		$saldo=mysqli_query($connection, "SELECT * FROM saldo WHERE id_siswa=$_POST[id_siswa] ");
+        $saldonum=$saldo->num_rows;
+        $lihatsaldo=$saldo->fetch_assoc();
 
-        $jumlahsaldo = $_POST['debit'] + $saldo;
+        $jumlahsaldo =  $lihatsaldo['saldo'] + $_POST[debit] ;
 
-        $queryupdatesetoran=mysqli_query($connection,"UPDATE saldo set saldo = $jumlahsaldo where id_saldo = $id_saldo ");
+        $queryupdatesaldo=mysqli_query($connection,"UPDATE saldo set saldo = $jumlahsaldo where id_siswa = $_POST[id_siswa] ");
 
 
 	          echo "<script> alert('Data Berhasil Disimpan'); location.href='index.php?hal=sekolah/setoran' </script>";

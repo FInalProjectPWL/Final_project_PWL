@@ -1,3 +1,7 @@
+<?php 
+	if (isset($id_usersekolah))
+	{
+?>
 <div class="content-wrapper">
 			<section class="content-header">
 				<h1>
@@ -73,3 +77,41 @@
 				</div>
 			</section>
 </div>
+<?php
+}
+if (isset($id_dataorgtua))
+{
+?>
+<div class="content-wrapper">
+			<section class="content-header">
+				<h1>
+					Dashboard
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+					<li class="active">Dashboard</li>
+				</ol>
+			</section>
+			<section class="content">
+				<div class="row">
+					<div class="col-lg-4 col-xs-4">
+						<div class="small-box bg-aqua">
+							<div class="inner">
+								<h3>Rp. 0</h3>
+								<p>Saldo</p>
+							</div>
+							<div class="icon">
+								<i class="fa fa-credit-card"></i>
+							</div>
+							<a href="#" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+					
+					
+				</div>
+			</section>
+</div>
+
+<?php
+}
+?>

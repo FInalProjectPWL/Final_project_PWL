@@ -64,6 +64,8 @@ else
 						<?php 
 						if (isset($id_usersekolah))
 						{
+							$id_sekolah = $_SESSION['id_sekolah'];
+
 						?>
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -167,7 +169,7 @@ else
 							<li><a href="index.php?hal=pegawai/pegawai"><i class="fa fa-circle-o"></i> Data Pegawai</a></li>
 							<li><a href="index.php?hal=kelas/kelas"><i class="fa fa-circle-o"></i> Data Kelas</a></li>
 							<li><a href="index.php?hal=siswa/siswa"><i class="fa fa-circle-o"></i> Data Siswa</a></li>
-							<li><a href="index.php?hal=sekolah/rks"><i class="fa fa-line-chart"></i>Rencana Kegiatan Sekolah</a></li>
+							<li><a href="index.php?hal=sekolah/rks/rks"><i class="fa fa-line-chart"></i>Rencana Kegiatan Sekolah</a></li>
 						</ul>
 					</li>
 					<li class="treeview">
