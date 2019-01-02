@@ -1,27 +1,31 @@
 <?php 
 
 require_once '../koneksi.php';
-error_reporting(1);
+error_reporting(0);
 session_start();
-$id_usersekolah = $_SESSION['id_usersekolah'];
+
+$id_dataorgtua = $_SESSION['id_dataorgtua'];
 
 
-$user=mysqli_query($connection, "SELECT * FROM usersekolah WHERE id_usersekolah='$id_usersekolah'");
-$usernum=$user->num_rows;
-$lihatuser_sekolah=$user->fetch_assoc();
 
-if (empty($id_usersekolah))
+
+$user_ortu=mysqli_query($connection, "SELECT * FROM dataorgtua join tb_datasiswa on tb_datasiswa.id_siswa = dataorgtua.id_siswa WHERE id_dataorgtua='$id_dataorgtua'");
+$user_ortunum=$user_ortu->num_rows;
+$lihatuser_orgtua=$user_ortu->fetch_assoc();
+
+
+if (empty($id_dataorgtua))
 {
 
 	echo "<script>alert('anda belum login');
-					location.href='../login.php';
+					location.href='../login_orgtua.php';
 					</script>";
 }
 else
 {
 
 	
-?>			
+?>		
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -61,26 +65,31 @@ else
 						
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<img src="../assets/dist/img/photo1.png" class="user-image" alt="User Image">
-								<span class="hidden-xs"> <?php echo $lihatuser_sekolah['email']; ?></span>
+								<img src="../assets/images/user/<?php echo $lihatuser_orgtua['foto'];?>" class="user-image" alt="User Image">
+								<span class="hidden-xs"> <?php echo $lihatuser_orgtua['nama_orgtua']; ?></span>
 							</a>
 							<ul class="dropdown-menu">
 			
 								<li class="user-header">
-									<img src="../../assets/dist/img/photo1.png" class="img-circle" alt="User Image">
+									<img src="../assets/images/user/<?php echo $lihatuser_orgtua['foto'];?>" class="img-circle" alt="User Image">
+									<p>
 									
+								
+									</p>
 								</li>
 								<li class="user-footer">
 									<div class="pull-left">
-										<a href="index.php?hal=sekolah/profilesekolah" class="btn btn-primary btn-flat">Profile</a>
+										<a href="profilesekolah.php" class="btn btn-primary btn-flat">Profile</a>
 									</div>
 									<div class="pull-right">
-										<a href="../logout_sekolah.php" class="btn btn-danger btn-flat">Keluar</a>
+										<a href="../logout_orgtua.php" class="btn btn-danger btn-flat">Keluar</a>
 									</div>
 								</li>
 							</ul>
 						</li>
-						
+						<?php
+						}
+						?>
 					</ul>
 				</div>
 			</nav>
@@ -90,7 +99,7 @@ else
 			<section class="sidebar">
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img src="../../assets/dist/img/photo1.png" class="img-circle" alt="User Image">
+						<img src="../assets/images/user/<?php echo $lihatuser_orgtua['foto'];?>" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
 						<p><!-- <?php echo $record['nama_sekolah']; ?> --></p>
@@ -109,46 +118,18 @@ else
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">MENU</li>
 					<li class="active">
-						<a href="index.php"><i class="fa fa-home"></i> <span>Dashbooard</span></a>
+						<a href="?hal=dashboard"><i class="fa fa-home"></i> <span>Dashbooard</span></a>
 					</li>
-					<li class="treeview">
-						<a href="#">
-							<i class="fa fa-pie-chart"></i>
-							<span>Data Master</span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<li><a href="index.php?hal=orgtua/dataorgtua"><i class="fa fa-circle-o"></i> Data Orangtua</a></li>
-							<li><a href="index.php?hal=pegawai/pegawai"><i class="fa fa-circle-o"></i> Data Pegawai</a></li>
-							<li><a href="index.php?hal=kelas/kelas"><i class="fa fa-circle-o"></i> Data Kelas</a></li>
-							<li><a href="index.php?hal=siswa/siswa"><i class="fa fa-circle-o"></i> Data Siswa</a></li>
-							<li><a href="index.php?hal=sekolah/rks/rks"><i class="fa fa-line-chart"></i>Rencana Kegiatan Sekolah</a></li>
-						</ul>
-					</li>
-					<li class="treeview">
-						<a href="#">
-							<i class="fa fa-credit-card"></i>
-							<span>Transaksi</span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<li><a href="index.php?hal=sekolah/setoran"><i class="fa fa-circle-o"></i> Setoran Tunai</a></li>
-							<li><a href="index.php?hal=sekolah/penarikan"><i class="fa fa-circle-o"></i> Penarikan Tunai</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="index.php?hal=sekolah/laporan"><i class="fa fa-print"></i> <span>Laporan</span></a>
-					</li>
-					<li>
-						<a href="index.php?hal=sekolah/pengaturan"><i class="fa fa-cog"></i> <span>Pengaturan</span></a>
-					</li>
-					<li>
-						<a href="../logout_sekolah.php"><i class="fa fa-sign-out"></i> <span>Keluar</span></a>
-					</li>
+				
+				    <li>
+				        <a href="?hal=laporan_orgtua"><i class="fa fa-print"></i> <span>Laporan</span></a>
+				    </li>
+				    <li>
+				        <a href="?hal=pengaturan_orgtua"><i class="fa fa-cog"></i> <span>Pengaturan</span></a>
+				    </li>
+				    <li>
+				        <a href="../logout_orgtua.php"><i class="fa fa-sign-out"></i> <span>Keluar</span></a>
+				    </li>
 				</ul>
 			</section>
 			
@@ -171,7 +152,6 @@ else
 </html>
 <?php include 'footer.php'; ?>
 
-<?php
-}
-
+<?php?>	
+}	
 ?>

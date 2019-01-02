@@ -1,6 +1,17 @@
 <?php 
 session_start();
 require_once 'koneksi.php';
+error_reporting(0);
+
+$id_usersekolah = $_SESSION['id_usersekolah'];
+if (isset($id_usersekolah))
+{
+
+	echo "<script>alert('anda sudah login');
+					location.href='admin/index.php';
+					</script>";
+}
+else{
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,3 +107,6 @@ require_once 'koneksi.php';
 	</script>
 </body>
 </html>
+<?php
+}
+?>

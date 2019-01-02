@@ -70,7 +70,7 @@ $id_sekolah = $_SESSION['id_sekolah'];
 								<td> <?php echo $record ['kelas'] ?></td>
 								<td> <?php echo $record ['jurusan'] ?></td>
 								<td> <?php echo $record ['debit'] ?></td>
-								<td><a href="update_setoran.php?id_datasetoran=<?php echo $record ['id_datasetoran']?>" class = "fa fa-pencil"></a> |
+								<td>s
 									<a href="?hal=sekolah/setoran&hapus=<?php echo $record ['id_datasetoran']?>" >
 									 <button class="btn btn-danger" type="submit" name="hapus"><i
                                                         class="fa fa-trash"></i> 

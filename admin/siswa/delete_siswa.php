@@ -1,11 +1,11 @@
 <?php
 
 
- 	if($_GET['id_datapegawai'] != "");
+ 	if(isset($_GET['id_siswa']))
  	{
- 	mysqli_query($connection,"DELETE FROM tb_datapegawai where id_datapegawai='".$_GET['id_datapegawai']."'");
+ 	mysqli_query($connection,"DELETE FROM tb_datasiswa where id_siswa='".$_GET['id_siswa']."'");
  	
  }
  ?>
   <script>alert("data telah dihapus ");
-window.location='index.php?hal=pegawai';</script>
+window.location='index.php?hal=siswa/siswa';</script>

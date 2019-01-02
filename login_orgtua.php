@@ -1,6 +1,16 @@
 <?php 
 session_start();
 require_once 'koneksi.php';
+error_reporting(0);
+$id_dataorgtua = $_SESSION['id_dataorgtua'];
+if (isset($id_dataorgtua))
+{
+
+	echo "<script>alert('anda sudah login');
+					location.href='admin/index.php';
+					</script>";
+}
+else{
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +77,7 @@ require_once 'koneksi.php';
 					$_SESSION["id_dataorgtua"]=$akun['id_dataorgtua'];
 					$_SESSION["nama_orgtua"]=$akun['nama_orgtua'];
 					echo "<script>alert('anda berhasil login');
-					location.href='admin/index.php';
+					location.href='admin/index_ortu.php';
 					</script>";
 				}
 				else
@@ -92,3 +102,6 @@ require_once 'koneksi.php';
 	</script>
 </body>
 </html>
+<?php
+}
+?>

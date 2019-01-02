@@ -1,7 +1,5 @@
 <?php 
-include 'template.php'; 
-include 'koneksi.php';
-$query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_dataorgtua ASC");
+
 
 ?>
 
@@ -33,6 +31,7 @@ $query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_datao
                 <th>No. HP</th>
                 <th>Username</th>
                 <th>Password</th>
+                <th>Saldo Anak</th>
                 <th>Aksi</th>
 
               </tr>
@@ -46,7 +45,11 @@ $query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_datao
             <?php
 
             $no=1;
-            $query = mysqli_query($connection," SELECT * FROM tb_dataorgtua");
+            $query = mysqli_query($connection," SELECT * FROM tb_datasiswa 
+              join dataorgtua on dataorgtua.id_siswa = tb_datasiswa.id_siswa
+              join tb_datakelas on tb_datakelas.id_datakelas = tb_datasiswa.id_datakelas 
+              join saldo on saldo.id_saldo = tb_datasiswa.id_saldo
+              where tb_datasiswa.id_sekolah=$id_usersekolah");
             while($record= mysqli_fetch_array($query)) {
               ?>
 
@@ -58,6 +61,7 @@ $query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_datao
                 <td> <?php echo $record ['telepon'] ?></td>
                 <td> <?php echo $record ['username'] ?></td>
                 <td> <?php echo $record ['password'] ?></td>
+                <td> <?php echo $record ['saldo'] ?></td>
                 <td><a href="index.php?hal=orgtua/update_orgtua&id_dataorgtua=<?php echo $record ['id_dataorgtua']?>" class = "fa fa-pencil"></a> |
                   <a href="index.php?hal=orgtua/delete_orgtua&id_dataorgtua=<?php echo $record ['id_dataorgtua']?>" class = "fa fa-trash"></a> 
                 </td>
@@ -88,6 +92,21 @@ $query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_datao
           <label>Nama Orang Tua</label>
           <input type="text" name="nama_orgtua" class="form-control" placeholder="Nama Orang Tua" required="">
         </div>
+        <div class="form-group">
+          <label>Nama Anak</label>
+           <select name="siswa" class="form-control ">
+                            <option value="">--pilih anak--</option>
+                            <?php
+                            $no = 0;
+                            $query = mysqli_query($connection," SELECT * FROM tb_datasiswa where tb_datasiswa.id_sekolah=$id_usersekolah");
+  
+                            while ($row = mysqli_fetch_array($query)) {
+                           
+                            ?>
+                            <option value="<?php echo $row['id_siswa']; ?>"><?php echo $row['nama_siswa'] ?></option>
+                            <?php } ?>
+                        </select>
+        </div>
           <div class="form-group">
           <label>Alamat</label>
           <textarea name="alamat" class="form-control" placeholder="Alamat" required=""></textarea>
@@ -103,7 +122,7 @@ $query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_datao
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input type="text" name="password" class="form-control" placeholder="Password" required="">
+          <input type="password" name="password" class="form-control" placeholder="Password" required="">
         </div>
       </div>
 
@@ -117,8 +136,8 @@ $query = mysqli_query($connection,"SELECT * FROM tb_dataorgtua ORDER BY id_datao
 </form>
 <?php 
       if (isset($_POST['submit'])) {
-
-        $con=mysqli_query($connection, "INSERT INTO dataorgtua (nama_orgtua, alamat, telepon, username, password) VALUES ('$_POST[nama_orgtua]','$_POST[alamat]','$_POST[telepon]','$_POST[username]','$_POST[password]')");
+          $md5=md5($_POST['password']);
+        $con=mysqli_query($connection, "INSERT INTO dataorgtua (id_siswa,nama_orgtua, alamat, telepon, username, password) VALUES ('$_POST[siswa]','$_POST[nama_orgtua]','$_POST[alamat]','$_POST[telepon]','$_POST[username]','$md5')");
         echo "<script>alert('Daftar sukses!');</script>";
         echo "<meta http-equiv='refresh' content='1;url=index.php?hal=orgtua/dataorgtua'>";
       }

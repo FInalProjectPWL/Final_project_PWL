@@ -26,6 +26,7 @@ $id_sekolah = $_SESSION['id_sekolah'];
 					<table id="example1" class="table table-striped table-bordered">
 						<thead>
 							<tr>
+								<th>Foto</th>
 								<th>No</th>
 								<th>Nama Siswa</th>
 								<th>No. Induk</th>
@@ -49,12 +50,21 @@ $id_sekolah = $_SESSION['id_sekolah'];
 						$query = mysqli_query($connection," SELECT * FROM tb_datasiswa 
 							join tb_datakelas on tb_datakelas.id_datakelas = tb_datasiswa.id_datakelas 
 							join saldo on saldo.id_saldo = tb_datasiswa.id_saldo
-							where tb_datasiswa.id_sekolah=$id_sekolah
+							where tb_datasiswa.id_sekolah=$id_sekolah order by tb_datasiswa.nama_siswa asc
 							");
 						while($record= mysqli_fetch_array($query)) {
 							?>
 
 							<tr class="active">
+								<td width="25px">
+                                        <img src="../assets/images/user/<?php
+                                        if(!empty($record['foto'])) {
+                                            echo $record['foto'];
+                                        }else{
+                                            echo "no-images.png";
+                                        }
+                                        ?>" width="100px">
+                                </td>
 								<td> <?php echo $no; ?></td>
 								<td> <?php echo $record ['nama_siswa']; ?></td>
 								<td> <?php echo $record ['no_induk']; ?></td>
@@ -63,8 +73,8 @@ $id_sekolah = $_SESSION['id_sekolah'];
 								<td> <?php echo $record ['kelas']; ?></td>
 								<td> <?php echo $record ['no_rek'] ?></td>
 								<td> <?php echo $record ['saldo'] ?></td>
-								<td><a href="update_siswa.php?id_datasiswa=<?php echo $record ['id_datasiswa']?>" class = "fa fa-pencil"></a> |
-									<a href="delete_siswa.php?id_datasiswa=<?php echo $record ['id_datasiswa']?>" class = "fa fa-trash"></a> 
+								<td><a href="index.php?hal=siswa/update_siswa&id_siswa=<?php echo $record ['id_siswa']?>" class = "fa fa-pencil"></a> |
+									<a href="index.php?hal=siswa/delete_siswa&id_siswa=<?php echo $record ['id_siswa']?>" class = "fa fa-trash"></a> 
 								</td>
 							</tr>
 						
@@ -78,7 +88,7 @@ $id_sekolah = $_SESSION['id_sekolah'];
 	</div>
 </section>
 </div>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 	<div class="modal fade" id="tambah">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -88,6 +98,30 @@ $id_sekolah = $_SESSION['id_sekolah'];
 				<h4 class="modal-title">Tambah Data</h4>
 			</div>
 			<div class="modal-body">
+				 <div class="form-group">
+                    <label for="cname" class="control-label col-lg-2" >Foto</label>
+                    
+                        <div class="fileupload fileupload-new" data-provides="fileupload"><input
+                                                  type="hidden">
+	                        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+	                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
+	                                                   alt="">
+	                        </div>
+	                        <div class="fileupload-preview fileupload-exists thumbnail"
+	                                               style="max-width: 200px; max-height: 150px; line-height: 10px;"></div>
+	                        <div>
+	                            <span class="btn btn-default btn-file">
+		                            <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
+		                            <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
+		                            <input type="file" name="user_foto" accept="image/*" class="default">
+	                            </span>
+	                            <a href="#" class="btn btn-danger fileupload-exists"
+	                                                 data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
+	                        </div>
+                         </div>
+                   
+                </div>
+              
 				<div class="form-group">
 					<label> Nama Siswa</label>
 					<input type="text" name="nama_siswa" class="form-control" placeholder="Nama siswa" required= "">
@@ -137,13 +171,63 @@ $id_sekolah = $_SESSION['id_sekolah'];
 
 	$id_saldo = (rand(2,1000));
 	$id_siswa = (rand(2,1000));
+
       if (isset($_POST['submit'])) {
 
-        $con=mysqli_query($connection, "INSERT INTO tb_datasiswa (id_siswa,nama_siswa, no_induk, nisn, ttl, no_rek,id_datakelas,id_saldo,id_sekolah) VALUES ($id_siswa,'$_POST[nama_siswa]','$_POST[no_induk]','$_POST[nisn]','$_POST[tgl_lahir]','$_POST[no_rek]','$_POST[kelas]',$id_saldo,$id_sekolah)");
+	    if (!empty($_FILES) && $_FILES['user_foto']['size'] > 0 && $_FILES['user_foto']['error'] == 0) {
+	        $random = substr(number_format(time() * rand(), 0, '', ''), 0, 10);
+	        $foto = $random . $_FILES['user_foto']['name'];
+	        $move = move_uploaded_file($_FILES['user_foto']['tmp_name'], '../assets/images/user/' . $foto);
 
-        $con2=mysqli_query($connection, "INSERT INTO saldo (id_saldo, saldo, id_siswa) VALUES ($id_saldo,0,$id_siswa)");
+	        $con = mysqli_query($connection,
+	            "INSERT INTO tb_datasiswa
+	                (id_siswa,
+		        	  nama_siswa,
+		        	  no_induk, 
+		        	  nisn, ttl,
+		        	  no_rek,
+		        	  id_datakelas,
+		        	  id_saldo,
+		        	  id_sekolah,
+		        	  foto)
+	                 VALUES ($id_siswa,
+			        	'$_POST[nama_siswa]',
+			        	'$_POST[no_induk]',
+			        	'$_POST[nisn]',
+			        	'$_POST[tgl_lahir]',
+			        	'$_POST[no_rek]',
+			        	'$_POST[kelas]',
+			        	 $id_saldo,
+			        	 $id_sekolah,
+	                 	'" . $foto . "')") ;
+	        
+	        $con2=mysqli_query($connection, "INSERT INTO saldo (id_saldo, saldo, id_siswa) VALUES ($id_saldo,0,$id_siswa)");
+	    } else {
 
+	        $con=mysqli_query($connection, 
+	        	"INSERT INTO tb_datasiswa 
+	        	(id_siswa,
+	        	 nama_siswa,
+	        	 no_induk, 
+	        	 nisn, ttl,
+	        	 no_rek,
+	        	 id_datakelas,
+	        	 id_saldo,
+	        	 id_sekolah) 
+	        	VALUES ($id_siswa,
+		        	'$_POST[nama_siswa]',
+		        	'$_POST[no_induk]',
+		        	'$_POST[nisn]',
+		        	'$_POST[tgl_lahir]',
+		        	'$_POST[no_rek]',
+		        	'$_POST[kelas]',
+		        	 $id_saldo,
+		        	 $id_sekolah)");
 
+	        
+	        $con2=mysqli_query($connection, "INSERT INTO saldo (id_saldo, saldo, id_siswa) VALUES ($id_saldo,0,$id_siswa)");
+
+    	}
         echo "<script>alert('Daftar sukses!');</script>";
         echo "<meta http-equiv='refresh' content='1;url=index.php?hal=siswa/siswa'>";
       }
