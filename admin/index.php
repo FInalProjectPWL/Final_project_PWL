@@ -3,10 +3,10 @@
 require_once '../koneksi.php';
 error_reporting(1);
 session_start();
-$id_usersekolah = $_SESSION['id_usersekolah'];
+$id_usersekolah = $_SESSION['id_sekolah'];
 
 
-$user=mysqli_query($connection, "SELECT * FROM usersekolah WHERE id_usersekolah='$id_usersekolah'");
+$user=mysqli_query($connection, "SELECT * FROM sekolah WHERE id_sekolah='$id_usersekolah'");
 $usernum=$user->num_rows;
 $lihatuser_sekolah=$user->fetch_assoc();
 

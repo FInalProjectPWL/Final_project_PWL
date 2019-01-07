@@ -70,7 +70,7 @@ else{
 			{
 				$email=$_POST["email"];
 				$password=md5($_POST["password"]);
-				$loginuser=mysqli_query($connection, "SELECT * FROM usersekolah WHERE email='$email' AND password='$password'");
+				$loginuser=mysqli_query($connection, "SELECT * FROM sekolah WHERE email='$email' AND password='$password'");
 				$validakun=$loginuser->num_rows;
 				if ($validakun==1)
 				{
